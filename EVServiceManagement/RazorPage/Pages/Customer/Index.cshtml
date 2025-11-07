@@ -1,0 +1,49 @@
+﻿@page
+@model RazorPage.Pages.Customer.IndexModel
+@{
+    ViewData["Title"] = "Khách hàng - Trang chủ";
+}
+
+<header class="mb-4">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded shadow-sm">
+        <div class="container-fluid px-3">
+            <a class="navbar-brand fw-semibold" asp-page="./Index">EV Service</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#customerNavbar" aria-controls="customerNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="customerNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-2">
+                    <li class="nav-item">
+                        <a class="btn btn-vehicles" asp-page="./Vehicle/Index">Xe của tôi</a>
+                    </li>
+                    <li class="nav-item">
+                        <form method="post" asp-page-handler="Logout" class="d-inline" asp-antiforgery="true">
+                            <button type="submit" class="btn btn-outline-danger rounded-pill px-3">Đăng xuất</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="customer-hero p-5 mb-4 rounded-3 text-center text-lg-start">
+    <div class="container py-3">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7">
+                <h1 class="display-6 fw-bold mb-3">Chào mừng đến với dịch vụ bảo dưỡng xe điện</h1>
+                <p class="lead mb-4">Đặt lịch bảo dưỡng nhanh chóng, theo dõi tình trạng xe và khám phá các gói dịch vụ phù hợp cho bạn.</p>
+                <div class="d-flex gap-2 flex-wrap">
+                    <a class="btn btn-primary" asp-page="./Service/Index">Khám phá dịch vụ</a>
+                    <a class="btn btn-outline-primary" asp-page="./Appointments">Đặt lịch hẹn</a>
+                </div>
+            </div>
+            <div class="col-lg-5 text-center">
+                <div class="hero-illustration rounded">
+                    <span class="visually-hidden">EV Service Illustration</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

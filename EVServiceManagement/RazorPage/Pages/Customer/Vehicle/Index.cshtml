@@ -1,0 +1,101 @@
+﻿@page
+@model RazorPage.Pages.Customer.Vehicle.IndexModel
+@{
+    ViewData["Title"] = "Xe của tôi";
+}
+
+<div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
+    <h1 class="h3 m-0">Xe của tôi</h1>
+    <div class="d-flex gap-2">
+        <a asp-page="Create" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Thêm xe</a>
+        <button type="button" class="btn btn-outline-secondary" id="toggleViewBtn">Chế độ hiển thị</button>
+    </div>
+</div>
+
+<div class="input-group mb-4 shadow-sm">
+    <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
+    <input type="text" class="form-control border-start-0" placeholder="Tìm kiếm theo Model, Biển số..." id="searchBox" />
+</div>
+
+@if (Model.MyVehicle == null || !Model.MyVehicle.Any())
+{
+    <div class="text-center py-5 border rounded-3 bg-light">
+        <p class="lead mb-3">Bạn chưa có xe nào được lưu.</p>
+        <a asp-page="Create" class="btn btn-primary btn-lg">+ Thêm xe đầu tiên</a>
+    </div>
+}
+else
+{
+    <div id="vehicleContainer" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (var v in Model.MyVehicle)
+        {
+            if (v.Status == "Active")
+            {
+                <div class="col vehicle-item" data-keywords="@((v.Model + " " + v.LicensePlate + " " + v.Vin)?.ToLower())">
+                    <div class="card h-100 border-0 shadow-sm hover-card">
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="card-title mb-0 text-truncate" title="@v.Model">@v.Model</h5>
+                                <span class="badge bg-@GetStatusColor(v.Status)">@v.Status</span>
+                            </div>
+                            <div class="small text-muted mb-2">ID: @v.VehicleId</div>
+                            <ul class="list-unstyled mb-3 small flex-grow-1">
+                                <li><strong>VIN:</strong> @DisplayOrDash(v.Vin)</li>
+                                <li><strong>Biển số:</strong> @DisplayOrDash(v.LicensePlate)</li>
+                                <li><strong>Số km hiện tại:</strong> @(v.CurrentKm?.ToString("N0") ?? "-")</li>
+                            </ul>
+                            <div class="d-flex gap-2 mt-auto">
+                                <a asp-page="Edit" asp-route-id="@v.VehicleId" class="btn btn-sm btn-outline-primary flex-grow-1"><i class="bi bi-pencil-square"></i> Cập nhật</a>
+                                <a asp-page="Delete" asp-route-id="@v.VehicleId" class="btn btn-sm btn-outline-danger" title="Xóa" onclick="return confirm('Xác nhận xóa xe này?');"><i class="bi bi-trash"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+}
+
+@section Scripts {
+    <script>
+        (function () {
+            const searchBox = document.getElementById('searchBox');
+            const items = () => Array.from(document.querySelectorAll('#vehicleContainer .vehicle-item'));
+            searchBox?.addEventListener('input', function () {
+                const q = this.value.trim().toLowerCase();
+                items().forEach(el => {
+                    const match = !q || el.dataset.keywords.includes(q);
+                    el.style.display = match ? '' : 'none';
+                });
+            });
+
+            const toggleBtn = document.getElementById('toggleViewBtn');
+            let listMode = false;
+            toggleBtn?.addEventListener('click', () => {
+                listMode = !listMode;
+                document.getElementById('vehicleContainer')?.classList.toggle('list-view', listMode);
+                toggleBtn.textContent = listMode ? 'Chế độ lưới' : 'Chế độ hiển thị';
+            });
+        })();
+    </script>
+    <style>
+        .hover-card { transition: transform .15s ease, box-shadow .15s ease; }
+        .hover-card:hover { transform: translateY(-4px); box-shadow: 0 .5rem 1rem rgba(0,0,0,.15); }
+        #vehicleContainer.list-view .col { flex: 0 0 100%; max-width: 100%; }
+        #vehicleContainer.list-view .card { flex-direction: row; }
+        #vehicleContainer.list-view .card-body { display: flex; }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+}
+
+@functions {
+    private string DisplayOrDash(string? value) => string.IsNullOrWhiteSpace(value) ? "-" : value!;
+    private string GetStatusColor(string? status) => status?.ToLower() switch
+    {
+        "active" or "đang hoạt động" => "success",
+        "inactive" or "ngưng" => "secondary",
+        "maintenance" or "bảo trì" => "warning",
+        _ => "info"
+    };
+}
+

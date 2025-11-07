@@ -1,0 +1,15 @@
+.login-page[b-019d0p5s6z] {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card[b-019d0p5s6z] {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: .5rem;
+  padding: 2rem;
+  border: 1px solid rgba(0,0,0,.075);
+}

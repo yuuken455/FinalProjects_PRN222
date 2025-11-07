@@ -1,0 +1,14 @@
+C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\DAL\bin\Debug\net8.0\DAL.deps.json
+C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\DAL\bin\Debug\net8.0\DAL.runtimeconfig.json
+C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\DAL\bin\Debug\net8.0\DAL.dll
+C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\DAL\bin\Debug\net8.0\DAL.pdb
+C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\DAL\obj\Debug\net8.0\DAL.csproj.AssemblyReference.cache
+C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\DAL\obj\Debug\net8.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\DAL\obj\Debug\net8.0\DAL.AssemblyInfoInputs.cache
+C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\DAL\obj\Debug\net8.0\DAL.AssemblyInfo.cs
+C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\DAL\obj\Debug\net8.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\DAL\obj\Debug\net8.0\DAL.dll
+C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\DAL\obj\Debug\net8.0\refint\DAL.dll
+C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\DAL\obj\Debug\net8.0\DAL.pdb
+C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\DAL\obj\Debug\net8.0\DAL.genruntimeconfig.cache
+C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\DAL\obj\Debug\net8.0\ref\DAL.dll

@@ -1,0 +1,42 @@
+.customer-hero[b-kpeh2nqzkq] {
+  background: linear-gradient(135deg, #e8f1ff 0%, #f6fbff 100%);
+  border: 1px solid rgba(0,0,0,.05);
+}
+
+.hero-illustration[b-kpeh2nqzkq] {
+  height: 180px;
+  background: repeating-linear-gradient(45deg, #d0e7ff 0 10px, #e6f2ff 10px 20px);
+}
+
+/* Modern button style for "Xe c?a t�i" */
+.btn-vehicles[b-kpeh2nqzkq] {
+  --btn-bg: #0d6efd;
+  --btn-bg-hover: #0b5ed7;
+  --btn-shadow: 0 6px 16px rgba(13, 110, 253, 0.25);
+  --btn-shadow-hover: 0 8px 20px rgba(13, 110, 253, 0.35);
+
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  background: linear-gradient(180deg, var(--btn-bg), #0b62ff);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: .5rem 1rem;
+  font-weight: 600;
+  letter-spacing: .2px;
+  box-shadow: var(--btn-shadow);
+  transition: all .2s ease;
+}
+.btn-vehicles:hover[b-kpeh2nqzkq],
+.btn-vehicles:focus[b-kpeh2nqzkq] {
+  background: linear-gradient(180deg, var(--btn-bg-hover), #0a58ca);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: var(--btn-shadow-hover);
+  text-decoration: none;
+}
+.btn-vehicles:active[b-kpeh2nqzkq] {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(13, 110, 253, 0.2);
+}
