@@ -1,4 +1,4 @@
-﻿using BLL.DTOs.Vehicle;
+﻿using BLL.DTOs.VehicleDtos;
 
 namespace BLL.IService
 {

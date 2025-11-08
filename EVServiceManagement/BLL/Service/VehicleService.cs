@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BLL.DTOs.Vehicle;
+using BLL.DTOs.VehicleDtos;
 using BLL.IService;
 using DAL.IRepository;
 

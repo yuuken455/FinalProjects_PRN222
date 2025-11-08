@@ -41,6 +41,29 @@
   transform: translateY(0);
   box-shadow: 0 4px 10px rgba(13, 110, 253, 0.2);
 }
+/* _content/RazorPage/Pages/Customer/Service/Index.cshtml.rz.scp.css */
+:root[b-mxzaifr6yq] {
+  --card-radius: 14px;
+}
+
+.services-page .card[b-mxzaifr6yq] {
+  border-radius: var(--card-radius);
+}
+
+.services-page .card:hover[b-mxzaifr6yq] {
+  transform: translateY(-2px);
+  transition: transform .15s ease-in-out, box-shadow .15s ease-in-out;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.08) !important;
+}
+
+.services-page .badge.bg-warning[b-mxzaifr6yq] { color: #7a5200; }
+
+.services-page .parts ul li:last-child[b-mxzaifr6yq] { border-bottom: none !important; }
+
+.services-page .btn-group .btn.active[b-mxzaifr6yq] {
+  background-color: #0d6efd;
+  color: #fff;
+}
 /* _content/RazorPage/Pages/Login.cshtml.rz.scp.css */
 .login-page[b-019d0p5s6z] {
   min-height: calc(100vh - 160px);

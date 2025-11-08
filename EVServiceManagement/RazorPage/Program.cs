@@ -25,6 +25,8 @@ builder.Services.AddScoped<IVehicleService, VehicleService>();
 builder.Services.AddScoped<ICustomerRepo, CustomerRepo>();
 builder.Services.AddScoped<IServiceRepo, ServiceRepo>();
 builder.Services.AddScoped<IServiceService, ServiceService>();
+builder.Services.AddScoped<IAppointmentRepo, AppointmentRepo>();
+builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 
 var app = builder.Build();
 

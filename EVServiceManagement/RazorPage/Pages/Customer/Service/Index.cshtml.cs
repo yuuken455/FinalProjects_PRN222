@@ -1,4 +1,6 @@
+using BLL.DTOs.ServiceDtos;
 using BLL.IService;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace RazorPage.Pages.Customer.Service
@@ -12,8 +14,17 @@ namespace RazorPage.Pages.Customer.Service
             this.serviceService = serviceService;
         }
 
-        public void OnGet()
+        public ICollection<ServiceDto> ServiceDtos { get; set; } = new List<ServiceDto>();  
+
+        public async Task<IActionResult> OnGetAsync()
         {
+            if(string.IsNullOrEmpty(HttpContext.Session.GetString("CustomerId")))
+            {
+                return RedirectToPage("/Login");
+            }
+
+            ServiceDtos = await serviceService.GetAllServices();
+            return Page();
         }
     }
 }

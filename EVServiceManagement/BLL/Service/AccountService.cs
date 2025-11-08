@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BLL.DTOs.Account;
+using BLL.DTOs.AccountDtos;
 using BLL.IService;
 using DAL.IRepository;
 

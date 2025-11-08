@@ -1,4 +1,4 @@
-using BLL.DTOs.Vehicle;
+using BLL.DTOs.VehicleDtos;
 using BLL.IService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

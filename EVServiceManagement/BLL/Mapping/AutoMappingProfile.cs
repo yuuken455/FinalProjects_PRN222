@@ -1,6 +1,10 @@
 ﻿using AutoMapper;
-using BLL.DTOs.Account;
-using BLL.DTOs.Vehicle;
+using BLL.DTOs.AccountDtos;
+using BLL.DTOs.AppointmentDtos;
+using BLL.DTOs.PartDtos;
+using BLL.DTOs.PaymentDtos;
+using BLL.DTOs.ServiceDtos;
+using BLL.DTOs.VehicleDtos;
 using DAL.Entities;
 
 namespace BLL.Mapping
@@ -12,7 +16,7 @@ namespace BLL.Mapping
             CreateMap<Staff, StaffDto>();
             CreateMap<Customer, CustomerDto>();
             CreateMap<Technician, TechnicianDto>();
-            CreateMap<Manager, ManagerDto>();   
+            CreateMap<Manager, ManagerDto>();
             CreateMap<Account, AccountDto>()
                 .ForMember(dest => dest.CustomerDto, opt => opt.MapFrom(src => src.Customer))
                 .ForMember(dest => dest.StaffDto, opt => opt.MapFrom(src => src.Staff))
@@ -20,7 +24,17 @@ namespace BLL.Mapping
                 .ForMember(dest => dest.ManagerDto, opt => opt.MapFrom(src => src.Manager));
 
             CreateMap<Vehicle, VehicleDto>();
-            CreateMap<CreateVehicleDto, Vehicle>(); 
+            CreateMap<CreateVehicleDto, Vehicle>();
+
+            CreateMap<Part, PartDto>();
+            CreateMap<DAL.Entities.Service, ServiceDto>()
+                .ForMember(dest => dest.PartDtos, opt => opt.MapFrom(src => src.ServiceParts.Select(sp => sp.Part)));
+
+            CreateMap<Payment, PaymentDto>();
+            CreateMap<ServiceOrderDetail, ServiceOrderDetailDto>();
+            CreateMap<Technician, TechnicianDto>();
+            CreateMap<Appointment, AppointmentDto>()
+                .ForMember(dest => dest.TechnicianDtos, opt => opt.MapFrom(src => src.TechnicianAssignments.Select(ta => ta.Technician)));
         }
     }
 }

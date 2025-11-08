@@ -1,0 +1,155 @@
+﻿@page
+@model RazorPage.Pages.Customer.Service.IndexModel
+@{
+    ViewData["Title"] = "Dịch vụ";
+}
+
+<section class="services-page">
+    <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-4 gap-3">
+        <h1 class="h3 mb-0">Dịch vụ</h1>
+        <div class="d-flex align-items-center gap-2 flex-wrap">
+            <div class="btn-group" role="group" aria-label="Bộ lọc loại dịch vụ">
+                <button type="button" class="btn btn-outline-secondary active" data-filter="all">Tất cả</button>
+                <button type="button" class="btn btn-outline-secondary" data-filter="Check">Check</button>
+                <button type="button" class="btn btn-outline-secondary" data-filter="Clear">Clear</button>
+                <button type="button" class="btn btn-outline-secondary" data-filter="Replace">Replace</button>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.ServiceDtos == null || !Model.ServiceDtos.Any())
+    {
+        <div class="text-muted">Không có dịch vụ nào.</div>
+    }
+    else
+    {
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="service-grid">
+            @foreach (var s in Model.ServiceDtos)
+            {
+                var isReplace = string.Equals(s.Type, "Replace", StringComparison.OrdinalIgnoreCase);
+                var typeForAttr = s.Type ?? string.Empty;
+                <div class="col service-card" data-type="@typeForAttr">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex align-items-start justify-content-between mb-2">
+                                <h2 class="h5 card-title mb-0">@s.Name</h2>
+                                <span class="badge rounded-pill bg-@GetTypeColor(s.Type)">@s.Type</span>
+                            </div>
+
+                            @if (!string.IsNullOrWhiteSpace(s.Description))
+                            {
+                                <p class="card-text text-secondary mb-3">@s.Description</p>
+                            }
+
+                            <div class="small text-muted mb-3 d-flex flex-wrap gap-3">
+                                <span class="d-inline-flex align-items-center gap-1">
+                                    <span class="fw-semibold">Thời lượng:</span> @s.Duration phút
+                                </span>
+                                @if (s.Km.HasValue)
+                                {
+                                    <span class="d-inline-flex align-items-center gap-1">
+                                        <span class="fw-semibold">Km:</span> @s.Km.Value
+                                    </span>
+                                }
+                                <span class="d-inline-flex align-items-center gap-1">
+                                    <span class="fw-semibold">Trạng thái:</span>
+                                    <span class="badge bg-light text-dark border">@s.Status</span>
+                                </span>
+                            </div>
+
+                            <div class="pricing mb-2">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span class="text-secondary">Giá dịch vụ</span>
+                                    <span class="fw-bold">@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", (decimal)s.Price)</span>
+                                </div>
+                                @if (isReplace)
+                                {
+                                    var parts = s.PartDtos ?? new List<BLL.DTOs.Part.PartDto>();
+                                    var partsTotal = parts.Sum(p => p.UnitPrice);
+                                    <div class="d-flex align-items-center justify-content-between mt-1">
+                                        <span class="text-secondary">Giá phụ tùng</span>
+                                        <span class="fw-bold">@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", partsTotal)</span>
+                                    </div>
+                                    <hr class="my-2" />
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="">Tổng ước tính</span>
+                                        <span class="fs-5 fw-bold text-primary">@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", partsTotal + (decimal)s.Price)</span>
+                                    </div>
+                                }
+                            </div>
+
+                            @if (isReplace)
+                            {
+                                var parts = s.PartDtos ?? new List<BLL.DTOs.Part.PartDto>();
+                                if (parts.Any())
+                                {
+                                    <div class="parts mt-3">
+                                        <div class="fw-semibold mb-2">Phụ tùng kèm theo</div>
+                                        <ul class="list-unstyled mb-0 small">
+                                            @foreach (var p in parts)
+                                            {
+                                                <li class="d-flex align-items-center justify-content-between py-1 border-bottom">
+                                                    <span class="text-truncate">@p.Name</span>
+                                                    <span class="text-nowrap">@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", p.UnitPrice)</span>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="text-secondary small mt-2">Không có phụ tùng kèm theo.</div>
+                                }
+                            }
+
+                            <div class="mt-auto pt-3 d-flex gap-2">
+                                <button class="btn btn-primary flex-fill" type="button">Chọn dịch vụ</button>
+                                <button class="btn btn-outline-secondary" type="button" title="Chi tiết" data-bs-toggle="collapse" data-bs-target="#detail-@s.ServiceId" aria-expanded="false" aria-controls="detail-@s.ServiceId">Chi tiết</button>
+                            </div>
+                        </div>
+                        <div class="collapse" id="detail-@s.ServiceId">
+                            <div class="card-footer bg-light small">
+                                Mã dịch vụ: @s.ServiceId
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</section>
+
+@section Scripts {
+    <script>
+        (function () {
+            const grid = document.getElementById('service-grid');
+            const buttons = document.querySelectorAll('[data-filter]');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    buttons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const type = btn.getAttribute('data-filter');
+                    const cards = grid.querySelectorAll('.service-card');
+                    cards.forEach(card => {
+                        const t = card.getAttribute('data-type') || '';
+                        const visible = type === 'all' || t.toLowerCase() === type.toLowerCase();
+                        card.style.display = visible ? '' : 'none';
+                    });
+                });
+            });
+        })();
+    </script>
+}
+
+@functions {
+    private static string GetTypeColor(string? type)
+    {
+        return (type ?? string.Empty).ToLowerInvariant() switch
+        {
+            "check" => "info",
+            "clear" => "success",
+            "replace" => "warning",
+            _ => "secondary"
+        };
+    }
+}

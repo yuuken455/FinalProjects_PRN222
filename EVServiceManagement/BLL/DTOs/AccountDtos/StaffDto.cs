@@ -1,4 +1,4 @@
-﻿namespace BLL.DTOs.Account
+﻿namespace BLL.DTOs.AccountDtos
 {
     public class StaffDto
     {

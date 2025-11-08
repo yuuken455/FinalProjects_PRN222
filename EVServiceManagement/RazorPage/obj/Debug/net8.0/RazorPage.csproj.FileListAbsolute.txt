@@ -95,3 +95,4 @@ C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\RazorPage\bi
 C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\RazorPage\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\RazorPage\obj\Debug\net8.0\scopedcss\Pages\Login.cshtml.rz.scp.css
 C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\RazorPage\obj\Debug\net8.0\scopedcss\Pages\Customer\Index.cshtml.rz.scp.css
+C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\RazorPage\obj\Debug\net8.0\scopedcss\Pages\Customer\Service\Index.cshtml.rz.scp.css

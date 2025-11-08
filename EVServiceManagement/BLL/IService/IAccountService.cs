@@ -1,4 +1,4 @@
-﻿using BLL.DTOs.Account;
+﻿using BLL.DTOs.AccountDtos;
 
 namespace BLL.IService
 {

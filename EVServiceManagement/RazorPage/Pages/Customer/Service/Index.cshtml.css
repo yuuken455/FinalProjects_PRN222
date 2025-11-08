@@ -1,0 +1,22 @@
+:root {
+  --card-radius: 14px;
+}
+
+.services-page .card {
+  border-radius: var(--card-radius);
+}
+
+.services-page .card:hover {
+  transform: translateY(-2px);
+  transition: transform .15s ease-in-out, box-shadow .15s ease-in-out;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.08) !important;
+}
+
+.services-page .badge.bg-warning { color: #7a5200; }
+
+.services-page .parts ul li:last-child { border-bottom: none !important; }
+
+.services-page .btn-group .btn.active {
+  background-color: #0d6efd;
+  color: #fff;
+}

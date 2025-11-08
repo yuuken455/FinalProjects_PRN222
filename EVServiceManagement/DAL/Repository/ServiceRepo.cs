@@ -15,7 +15,10 @@ namespace DAL.Repository
 
         public async Task<ICollection<Service>> GetAllServicesAsync()
         {
-            return await dbContext.Services.ToListAsync();
+            return await dbContext.Services
+                .Include(s => s.ServiceParts)
+                .ThenInclude(x => x.Part)
+                .ToListAsync();
         }
     }
 }
