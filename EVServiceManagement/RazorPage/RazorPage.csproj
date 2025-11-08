@@ -11,9 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Manager\" />
     <Folder Include="Pages\Technician\" />
-    <Folder Include="Pages\Staff\" />
   </ItemGroup>
 
 </Project>

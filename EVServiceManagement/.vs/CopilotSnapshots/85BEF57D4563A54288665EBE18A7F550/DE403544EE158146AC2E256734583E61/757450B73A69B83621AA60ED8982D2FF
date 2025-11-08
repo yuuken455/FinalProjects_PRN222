@@ -1,0 +1,30 @@
+﻿using BLL.DTOs.PartDtos;
+using BLL.IService;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace RazorPage.Pages.Staff.PartRequest
+{
+    public class IndexModel : PageModel
+    {
+        private readonly IPartRequestService partRequestService;
+
+        public IndexModel(IPartRequestService partRequestService)
+        {
+            this.partRequestService = partRequestService;
+        }
+
+        public ICollection<PartRequestDto> PartRequestDtos { get; set; } = new List<PartRequestDto>();
+
+        public async Task<IActionResult> OnGet()
+        {
+            if (!int.TryParse(HttpContext.Session.GetString("StaffId"), out int staffId))
+            {
+                return RedirectToPage("/Login");
+            }
+
+            PartRequestDtos = await partRequestService.GetPartRequestByStaffId(staffId);
+            return Page();
+        }
+    }
+}

@@ -27,6 +27,10 @@ builder.Services.AddScoped<IServiceRepo, ServiceRepo>();
 builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IAppointmentRepo, AppointmentRepo>();
 builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+builder.Services.AddScoped<IPartRepo, PartRepo>();
+builder.Services.AddScoped<IPartService, PartService>();
+builder.Services.AddScoped<IPartRequestRepo, PartRequestRepo>();
+builder.Services.AddScoped<IPartRequestService, PartRequestService>();
 
 var app = builder.Build();
 

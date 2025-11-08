@@ -1,0 +1,64 @@
+﻿@page
+@model RazorPage.Pages.Staff.IndexModel
+@{
+    Layout = "_StaffLayout";
+}
+
+<div class="staff-welcome h-100 d-flex flex-column">
+    <div class="hero card border-0 shadow-sm mb-4 text-white position-relative overflow-hidden">
+        <div class="hero-bg position-absolute top-0 start-0 w-100 h-100"></div>
+        <div class="card-body position-relative" style="z-index:2;">
+            <h1 class="display-6 fw-semibold mb-2"><i class="bi bi-lightning-charge-fill me-2"></i>Xin chào, Staff!</h1>
+            <p class="lead mb-3">Chào mừng bạn đến hệ thống quản lý dịch vụ xe điện. Hãy bắt đầu với các thao tác nhanh dưới đây.</p>
+            <div>
+                <a asp-page="/Staff/Appointment/Index" class="btn btn-warning me-2 mb-2"><i class="bi bi-calendar-plus me-1"></i>Tạo lịch hẹn</a>
+                <a asp-page="/Staff/Part/Index" class="btn btn-outline-light mb-2"><i class="bi bi-box-seam me-1"></i>Quản lý phụ tùng</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 flex-grow-1">
+        <div class="col-md-4">
+            <div class="quick-card card shadow-sm h-100">
+                <div class="card-body">
+                    <div class="icon-circle bg-primary text-white mb-3"><i class="bi bi-calendar-check"></i></div>
+                    <h5 class="card-title">Lịch hẹn hôm nay</h5>
+                    <p class="card-text small text-muted">Xem và xử lý các lịch hẹn đã đặt trong ngày.</p>
+                    <a asp-page="/Staff/Appointment/Index" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="quick-card card shadow-sm h-100">
+                <div class="card-body">
+                    <div class="icon-circle bg-success text-white mb-3"><i class="bi bi-tools"></i></div>
+                    <h5 class="card-title">Kho phụ tùng</h5>
+                    <p class="card-text small text-muted">Kiểm tra số lượng, cập nhật nhập - xuất.</p>
+                    <a asp-page="/Staff/Part/Index" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="quick-card card shadow-sm h-100">
+                <div class="card-body">
+                    <div class="icon-circle bg-info text-white mb-3"><i class="bi bi-graph-up"></i></div>
+                    <h5 class="card-title">Hiệu suất</h5>
+                    <p class="card-text small text-muted">Báo cáo tổng quan (sẽ sớm cập nhật).</p>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <style>
+        .hero { background: linear-gradient(135deg,#ffb347,#ffcc33); }
+        .hero-bg { background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 70%); opacity:.6; }
+        .icon-circle { width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem; }
+        .quick-card { transition: transform .25s ease, box-shadow .25s ease; cursor: pointer; }
+        .quick-card:hover { transform: translateY(-4px); box-shadow: 0 .75rem 1.25rem rgba(0,0,0,.15); }
+        .staff-welcome { animation: fadeIn .6s ease; }
+        @keyframes fadeIn { from { opacity:0; transform: translateY(10px);} to { opacity:1; transform: translateY(0);} }
+    </style>
+}

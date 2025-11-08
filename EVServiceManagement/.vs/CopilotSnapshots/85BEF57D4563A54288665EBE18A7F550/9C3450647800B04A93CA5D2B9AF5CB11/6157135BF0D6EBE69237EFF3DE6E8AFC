@@ -1,0 +1,5 @@
+﻿@page
+@model RazorPage.Pages.Staff.IndexModel
+@{
+    Layout = "_StaffLayout";
+}

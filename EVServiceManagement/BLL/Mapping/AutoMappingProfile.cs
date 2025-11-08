@@ -35,6 +35,10 @@ namespace BLL.Mapping
             CreateMap<Technician, TechnicianDto>();
             CreateMap<Appointment, AppointmentDto>()
                 .ForMember(dest => dest.TechnicianDtos, opt => opt.MapFrom(src => src.TechnicianAssignments.Select(ta => ta.Technician)));
+
+            CreateMap<PartRequest, PartRequestDto>()
+                .ForMember(dest => dest.PartDto, opt => opt.MapFrom(src => src.Part));
+            CreateMap<CreatePartRequestDto, PartRequest>(); 
         }
     }
 }

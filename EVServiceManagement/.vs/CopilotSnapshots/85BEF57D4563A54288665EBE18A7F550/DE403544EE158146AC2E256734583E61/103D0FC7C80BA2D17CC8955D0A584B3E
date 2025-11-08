@@ -1,0 +1,109 @@
+﻿@page
+@model RazorPage.Pages.Staff.PartRequest.IndexModel
+@{
+    Layout = "_StaffLayout";
+    var statuses = new[] { "Pending", "Rejected", "Accepted", "Shipping", "Completed" };
+    var groups = Model.PartRequestDtos
+        .GroupBy(x => x.Status)
+        .ToDictionary(g => g.Key, g => g.OrderByDescending(i => i.RequestDate ?? DateTime.MinValue).ToList());
+}
+
+<div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
+    <h1 class="h4 m-0"><i class="bi bi-bag-plus me-2"></i>Yêu cầu linh kiện</h1>
+    <a asp-page="/Staff/Part/Index" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Quay lại kho</a>
+</div>
+
+@if (TempData["StatusMessage"] is string msg && !string.IsNullOrEmpty(msg))
+{
+    <div class="alert alert-success d-flex align-items-center" role="alert">
+        <i class="bi bi-check-circle me-2"></i>
+        @msg
+    </div>
+}
+
+<ul class="nav nav-pills gap-2 mb-3 flex-wrap">
+    @foreach (var s in statuses)
+    {
+        var count = groups.ContainsKey(s) ? groups[s].Count : 0;
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#tab-@s">
+                @s <span class="badge bg-light text-dark ms-1">@count</span>
+            </a>
+        </li>
+    }
+</ul>
+
+<div class="tab-content">
+    @foreach (var s in statuses)
+    {
+        var items = groups.ContainsKey(s) ? groups[s] : new List<BLL.DTOs.PartDtos.PartRequestDto>();
+        <div class="tab-pane fade @(s == statuses.First() ? "show active" : "")" id="tab-@s">
+            @if (items.Count == 0)
+            {
+                <div class="text-center py-5 border rounded-3 bg-light">Chưa có yêu cầu nào ở trạng thái "@s".</div>
+            }
+            else
+            {
+                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+                    @foreach (var r in items)
+                    {
+                        <div class="col">
+                            <div class="card h-100 border-0 shadow-sm request-card">
+                                <div class="card-body d-flex flex-column">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h5 class="card-title mb-0">Yêu cầu #@r.RequestId</h5>
+                                        <span class="badge bg-@(GetStatusColor(r.Status))">@r.Status</span>
+                                    </div>
+                                    <div class="small text-muted mb-2">Ngày yêu cầu: @(r.RequestDate?.ToString("dd/MM/yyyy HH:mm") ?? "-")</div>
+                                    <ul class="list-unstyled small mb-3 flex-grow-1">
+                                        <li><strong>Linh kiện:</strong> @(r.PartDto?.Name ?? (r.PartId?.ToString() ?? "-"))</li>
+                                        <li><strong>Số lượng:</strong> @r.Quantity</li>
+                                        <li><strong>Duyệt bởi:</strong> @(r.ApprovedByNavigation?.ManagerId.ToString() ?? "-")</li>
+                                        <li><strong>Ngày duyệt:</strong> @(r.ApprovalDate?.ToString("dd/MM/yyyy") ?? "-")</li>
+                                        <li><strong>Ghi chú:</strong> @(string.IsNullOrWhiteSpace(r.Notes) ? "-" : r.Notes)</li>
+                                    </ul>
+                                    @if (string.Equals(r.Status, "Shipping", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        <form method="post" asp-page-handler="Complete" asp-route-id="@r.RequestId" class="mt-auto">
+                                            <button type="submit" class="btn btn-success w-100" onclick="return confirm('Xác nhận hoàn tất yêu cầu #@r.RequestId?');">
+                                                <i class="bi bi-check2-circle"></i> Complete
+                                            </button>
+                                        </form>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <style>
+        .request-card { transition: transform .18s ease, box-shadow .18s ease; }
+        .request-card:hover { transform: translateY(-4px); box-shadow: 0 .6rem 1.2rem rgba(0,0,0,.12); }
+        .nav-pills .nav-link { border-radius: 2rem; }
+        .nav-pills .nav-link.active { background: #0d6efd; }
+    </style>
+    <script>
+        // Activate first tab by default
+        (function(){
+            const first = document.querySelector('.nav-pills .nav-link');
+            if (first) new bootstrap.Tab(first).show();
+        })();
+    </script>
+}
+
+@functions {
+    private string GetStatusColor(string? s) => s?.ToLower() switch
+    {
+        "pending" => "secondary",
+        "rejected" => "danger",
+        "accepted" => "primary",
+        "shipping" => "warning",
+        "completed" => "success",
+        _ => "light"
+    };
+}

@@ -3,98 +3,30 @@
   "WorkspaceRootPath": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|c:\\users\\koi22\\desktop\\fpt\\prn222\\final project\\evservicemanagement\\razorpage\\pages\\customer\\appointment\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|solutionrelative:razorpage\\pages\\customer\\appointment\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{369C2E72-ABC6-4C3C-8482-295A072F7831}|BLL\\BLL.csproj|c:\\users\\koi22\\desktop\\fpt\\prn222\\final project\\evservicemanagement\\bll\\iservice\\iappointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{369C2E72-ABC6-4C3C-8482-295A072F7831}|BLL\\BLL.csproj|solutionrelative:bll\\iservice\\iappointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{369C2E72-ABC6-4C3C-8482-295A072F7831}|BLL\\BLL.csproj|c:\\users\\koi22\\desktop\\fpt\\prn222\\final project\\evservicemanagement\\bll\\service\\appointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{369C2E72-ABC6-4C3C-8482-295A072F7831}|BLL\\BLL.csproj|solutionrelative:bll\\service\\appointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35609349-CA16-405B-A1F8-23228302BDDE}|DAL\\DAL.csproj|c:\\users\\koi22\\desktop\\fpt\\prn222\\final project\\evservicemanagement\\dal\\repository\\appointmentrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35609349-CA16-405B-A1F8-23228302BDDE}|DAL\\DAL.csproj|solutionrelative:dal\\repository\\appointmentrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35609349-CA16-405B-A1F8-23228302BDDE}|DAL\\DAL.csproj|c:\\users\\koi22\\desktop\\fpt\\prn222\\final project\\evservicemanagement\\dal\\irepository\\iappointmentrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35609349-CA16-405B-A1F8-23228302BDDE}|DAL\\DAL.csproj|solutionrelative:dal\\irepository\\iappointmentrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|c:\\users\\koi22\\desktop\\fpt\\prn222\\final project\\evservicemanagement\\razorpage\\pages\\manager\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|solutionrelative:razorpage\\pages\\manager\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
     {
-      "Orientation": 0,
+      "Orientation": 1,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "DockedHeight": 279,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "IAppointmentService.cs",
-              "DocumentMoniker": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\BLL\\IService\\IAppointmentService.cs",
-              "RelativeDocumentMoniker": "BLL\\IService\\IAppointmentService.cs",
-              "ToolTip": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\BLL\\IService\\IAppointmentService.cs",
-              "RelativeToolTip": "BLL\\IService\\IAppointmentService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T00:39:23.902Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AppointmentService.cs",
-              "DocumentMoniker": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\BLL\\Service\\AppointmentService.cs",
-              "RelativeDocumentMoniker": "BLL\\Service\\AppointmentService.cs",
-              "ToolTip": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\BLL\\Service\\AppointmentService.cs",
-              "RelativeToolTip": "BLL\\Service\\AppointmentService.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAmwBYAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T00:39:07.092Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IAppointmentRepo.cs",
-              "DocumentMoniker": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\DAL\\IRepository\\IAppointmentRepo.cs",
-              "RelativeDocumentMoniker": "DAL\\IRepository\\IAppointmentRepo.cs",
-              "ToolTip": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\DAL\\IRepository\\IAppointmentRepo.cs",
-              "RelativeToolTip": "DAL\\IRepository\\IAppointmentRepo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABTAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T00:38:57.468Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AppointmentRepo.cs",
-              "DocumentMoniker": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\DAL\\Repository\\AppointmentRepo.cs",
-              "RelativeDocumentMoniker": "DAL\\Repository\\AppointmentRepo.cs",
-              "ToolTip": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\DAL\\Repository\\AppointmentRepo.cs",
-              "RelativeToolTip": "DAL\\Repository\\AppointmentRepo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T00:38:48.388Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\RazorPage\\Pages\\Customer\\Appointment\\Index.cshtml",
-              "RelativeDocumentMoniker": "RazorPage\\Pages\\Customer\\Appointment\\Index.cshtml",
-              "ToolTip": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\RazorPage\\Pages\\Customer\\Appointment\\Index.cshtml",
-              "RelativeToolTip": "RazorPage\\Pages\\Customer\\Appointment\\Index.cshtml",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAAAFsAAAAjAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\RazorPage\\Pages\\Manager\\Index.cshtml",
+              "RelativeDocumentMoniker": "RazorPage\\Pages\\Manager\\Index.cshtml",
+              "ToolTip": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\RazorPage\\Pages\\Manager\\Index.cshtml",
+              "RelativeToolTip": "RazorPage\\Pages\\Manager\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-08T00:38:40.01Z",
+              "WhenOpened": "2025-11-08T07:13:43.101Z",
               "EditorCaption": ""
             }
           ]

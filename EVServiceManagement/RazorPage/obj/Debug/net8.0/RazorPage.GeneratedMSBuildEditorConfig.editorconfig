@@ -48,12 +48,36 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Manager/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Shared/_StaffLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9TdGFmZkxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Staff/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhZmZcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Staff/PartRequest/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhZmZcUGFydFJlcXVlc3RcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Staff/PartRequest/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhZmZcUGFydFJlcXVlc3RcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Staff/Part/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhZmZcUGFydFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/_ViewImports.cshtml]

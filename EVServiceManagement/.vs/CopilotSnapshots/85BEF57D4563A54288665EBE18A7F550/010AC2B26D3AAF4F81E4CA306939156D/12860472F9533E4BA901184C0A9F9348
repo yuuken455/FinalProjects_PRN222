@@ -1,0 +1,76 @@
+﻿using BLL.DTOs.PartDtos;
+using BLL.IService;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace RazorPage.Pages.Staff.PartRequest
+{
+    public class CreateModel : PageModel
+    {
+        private readonly IPartService partService;
+        private readonly IPartRequestService partRequestService;
+
+        public CreateModel(IPartService partService, IPartRequestService partRequestService)
+        {
+            this.partService = partService;
+            this.partRequestService = partRequestService;
+        }
+
+        [BindProperty]
+        public CreatePartRequestDto CreatePartRequestDto { get; set; } = new CreatePartRequestDto();
+        public PartDto PartDto { get; set; } = new PartDto();
+        public string ErrorMessage { get; set; } = string.Empty;    
+
+        public async Task<IActionResult> OnGet(int partId)
+        {
+            if(!int.TryParse(HttpContext.Session.GetString("StaffId"), out int staffId))
+            {
+                return RedirectToPage("/Login");
+            }
+
+            var partDto = await partService.GetPartById(partId);
+            if (partDto == null)
+            {
+                ErrorMessage = "Part not found.";
+                return Page();
+            }
+
+            PartDto = partDto;
+            CreatePartRequestDto.PartId = partId;
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int partId)
+        {
+            if (!int.TryParse(HttpContext.Session.GetString("StaffId"), out int staffId))
+            {
+                return RedirectToPage("/Login");
+            }
+
+            CreatePartRequestDto.RequestedBy = staffId;
+            CreatePartRequestDto.PartId = partId;
+
+            if (CreatePartRequestDto.Quantity < 10)
+            {
+                ErrorMessage = "Số lượng tối thiểu là 10.";
+                var partDto = await partService.GetPartById(partId);
+                if (partDto != null) PartDto = partDto;
+                return Page();
+            }
+
+            try
+            {
+                await partRequestService.AddPartRequest(CreatePartRequestDto);
+                TempData["StatusMessage"] = $"Đã tạo yêu cầu linh kiện cho Part #{partId}.";
+                return RedirectToPage("/Staff/PartRequest/Index");
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                var partDto = await partService.GetPartById(partId);
+                if (partDto != null) PartDto = partDto;
+                return Page();
+            }
+        }
+    }
+}

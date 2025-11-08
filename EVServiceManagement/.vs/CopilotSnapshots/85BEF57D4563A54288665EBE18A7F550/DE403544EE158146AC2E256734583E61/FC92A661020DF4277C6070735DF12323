@@ -1,0 +1,44 @@
+﻿@page
+@model RazorPage.Pages.Staff.PartRequest.IndexModel
+@{
+    Layout = "_StaffLayout";
+}
+
+<div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
+    <h1 class="h4 m-0"><i class="bi bi-bag-plus me-2"></i>Yêu c?u linh ki?n</h1>
+    <a asp-page="/Staff/Part/Index" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Quay l?i kho</a>
+</div>
+
+@if (Model.PartId.HasValue)
+{
+    <div class="alert alert-info d-flex align-items-center" role="alert">
+        <i class="bi bi-info-circle me-2"></i>
+        T?o yêu c?u b? sung cho linh ki?n có mã #@Model.PartId.
+    </div>
+}
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <p class="text-muted mb-4">Trang PartRequest ?ang ???c phát tri?n. T?i ?ây b?n s? có th? g?i yêu c?u nh?p thêm linh ki?n và theo dõi tr?ng thái phê duy?t.</p>
+        <div class="row g-3">
+            <div class="col-sm-6 col-lg-4">
+                <label class="form-label">S? l??ng yêu c?u</label>
+                <input type="number" min="1" class="form-control" placeholder="Ví d?: 10" />
+            </div>
+            <div class="col-12">
+                <label class="form-label">Ghi chú</label>
+                <textarea class="form-control" rows="3" placeholder="Thông tin b? sung..." ></textarea>
+            </div>
+        </div>
+        <div class="mt-4 d-flex gap-2">
+            <button class="btn btn-primary" type="button" disabled><i class="bi bi-send"></i> G?i yêu c?u</button>
+            <button class="btn btn-light" type="button" onclick="history.back()">H?y</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <style>
+        .card { border: 0; }
+    </style>
+}
