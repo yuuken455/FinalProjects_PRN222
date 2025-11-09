@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|c:\\users\\koi22\\desktop\\fpt\\prn222\\final project\\evservicemanagement\\razorpage\\pages\\manager\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|solutionrelative:razorpage\\pages\\manager\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|c:\\users\\koi22\\desktop\\fpt\\prn222\\final project\\evservicemanagement\\razorpage\\pages\\manager\\part\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|solutionrelative:razorpage\\pages\\manager\\part\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -20,13 +20,13 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\RazorPage\\Pages\\Manager\\Index.cshtml",
-              "RelativeDocumentMoniker": "RazorPage\\Pages\\Manager\\Index.cshtml",
-              "ToolTip": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\RazorPage\\Pages\\Manager\\Index.cshtml",
-              "RelativeToolTip": "RazorPage\\Pages\\Manager\\Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\RazorPage\\Pages\\Manager\\Part\\Index.cshtml",
+              "RelativeDocumentMoniker": "RazorPage\\Pages\\Manager\\Part\\Index.cshtml",
+              "ToolTip": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\RazorPage\\Pages\\Manager\\Part\\Index.cshtml",
+              "RelativeToolTip": "RazorPage\\Pages\\Manager\\Part\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-08T07:13:43.101Z",
+              "WhenOpened": "2025-11-08T07:28:53.564Z",
               "EditorCaption": ""
             }
           ]
