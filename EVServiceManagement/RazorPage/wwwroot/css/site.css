@@ -20,3 +20,23 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Auth (login/register) shared styles */
+.login-page {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: #f8f9fa;
+}
+.login-card {
+  width: 100%;
+  max-width: 420px; /* gi?i h?n ?? r?ng */
+  background: #ffffff;
+  border-radius: .75rem;
+  padding: 2rem 2rem 1.75rem;
+}
+@media (min-width: 576px) {
+  .login-card { padding: 2.25rem 2.25rem 2rem; }
+}

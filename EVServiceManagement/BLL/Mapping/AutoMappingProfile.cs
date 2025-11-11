@@ -25,6 +25,7 @@ namespace BLL.Mapping
 
             CreateMap<Vehicle, VehicleDto>();
             CreateMap<CreateVehicleDto, Vehicle>();
+            CreateMap<UpdateVehicleDto, Vehicle>();
 
             CreateMap<Part, PartDto>();
             CreateMap<DAL.Entities.Service, ServiceDto>()
@@ -38,7 +39,16 @@ namespace BLL.Mapping
 
             CreateMap<PartRequest, PartRequestDto>()
                 .ForMember(dest => dest.PartDto, opt => opt.MapFrom(src => src.Part));
-            CreateMap<CreatePartRequestDto, PartRequest>(); 
+            CreateMap<CreatePartRequestDto, PartRequest>();
+
+            CreateMap<CreateAccountDto, Account>();
+            CreateMap<CreateCustomerDto, Customer>()
+                .ForMember(dest => dest.Account, opt => opt.MapFrom(src => src.CreateAccountDto));
+
+            CreateMap<CreatePaymentDto, Payment>();
+            CreateMap<CreateServiceOrderDetail, ServiceOrderDetail>();
+            CreateMap<CreateAppointmentDto, Appointment>()
+                .ForMember(dest => dest.ServiceOrderDetails, opt => opt.MapFrom(src => src.CreateServiceOrderDetailDtos)); ;
         }
     }
 }

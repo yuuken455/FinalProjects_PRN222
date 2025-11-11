@@ -4,6 +4,7 @@ namespace BLL.IService
 {
     public interface IAppointmentService
     {
-        Task<ICollection<AppointmentDto>> GetAppointmentsByCustomerIdAsync(int customerId); 
+        Task<ICollection<AppointmentDto>> GetAppointmentsByCustomerIdAsync(int customerId);
+        Task CreateAppointment(CreateAppointmentDto createAppointmentDto);
     }
 }

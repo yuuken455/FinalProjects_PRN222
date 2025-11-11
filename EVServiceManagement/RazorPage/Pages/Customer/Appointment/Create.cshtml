@@ -1,0 +1,259 @@
+﻿@page
+@model RazorPage.Pages.Customer.Appointment.CreateModel
+@{
+    ViewData["Title"] = "Tạo lịch hẹn";
+}
+
+<div class="page-scroll-y">
+<div class="container-xxl py-4">
+    <div class="page-header mb-4">
+        <div class="d-flex flex-wrap gap-3 align-items-start justify-content-between">
+            <div>
+                <h1 class="page-title mb-1 fw-semibold">Tạo lịch hẹn</h1>
+                <p class="text-secondary mb-0 small">Chọn xe và dịch vụ để đặt lịch bảo dưỡng.</p>
+            </div>
+            <div class="d-flex gap-2">
+                <a asp-page="../Index" class="btn btn-outline-secondary shadow-sm"><i class="bi bi-arrow-left me-1"></i> Quay về</a>
+                <a asp-page="./Index" class="btn btn-outline-primary shadow-sm"><i class="bi bi-journal-text me-1"></i> Danh sách lịch hẹn</a>
+            </div>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <div>@Model.ErrorMessage</div>
+        </div>
+    }
+
+    <form method="post" asp-antiforgery="true" id="createAppointmentForm">
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+                            <h5 class="fw-semibold m-0 d-flex align-items-center gap-2">
+                                <i class="bi bi-car-front-fill text-primary"></i> Chọn xe của bạn
+                            </h5>
+                            <div id="selectedVehicleSummary" class="text-muted small"></div>
+                        </div>
+
+                        @if (Model.MyVehicle == null || !Model.MyVehicle.Any())
+                        {
+                            <div class="empty-state text-center py-5 px-3 border rounded-4 bg-white shadow-sm">
+                                <div class="display-6 mb-3 text-muted"><i class="bi bi-car-front"></i></div>
+                                <h6 class="fw-semibold mb-2">Bạn chưa có xe nào</h6>
+                                <p class="text-secondary mb-3 small">Hãy thêm xe trước khi đặt lịch hẹn.</p>
+                                <a asp-page="../Vehicle/Create" class="btn btn-primary shadow-sm"><i class="bi bi-plus-circle me-1"></i> Thêm xe</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div id="vehicleChooser" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+                                @foreach (var v in Model.MyVehicle)
+                                {
+                                    var statusColor = (v.Status?.ToLower()) switch { "active" or "đang hoạt động" => "success", "inactive" or "ngưng" => "secondary", "maintenance" or "bảo trì" => "warning", _ => "info" };
+                                    <div class="col">
+                                        <label class="vehicle-select card h-100 border-0 shadow-sm selectable-card" data-model="@v.Model" data-plate="@v.LicensePlate" data-vin="@v.Vin">
+                                            <input type="radio" class="visually-hidden" name="CreateAppointmentDto.VehicleId" value="@v.VehicleId" />
+                                            <div class="selected-badge"><i class="bi bi-check2-circle me-1"></i> Đã chọn</div>
+                                            <div class="card-body d-flex flex-column">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <div class="d-flex align-items-center gap-2 flex-grow-1">
+                                                        <div class="vehicle-avatar bg-primary-subtle text-primary"><i class="bi bi-car-front-fill"></i></div>
+                                                        <h6 class="card-title mb-0 text-truncate" title="@v.Model">@v.Model</h6>
+                                                    </div>
+                                                    <span class="badge status-badge bg-@statusColor">@v.Status</span>
+                                                </div>
+                                                <div class="text-muted mb-2 small">Biển số: <strong>@(string.IsNullOrWhiteSpace(v.LicensePlate) ? "-" : v.LicensePlate)</strong></div>
+                                                <div class="text-muted small">VIN: <strong>@(string.IsNullOrWhiteSpace(v.Vin) ? "-" : v.Vin)</strong></div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-text mt-2">Nhấp vào thẻ xe để chọn.</div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                            <h5 class="fw-semibold m-0 d-flex align-items-center gap-2"><i class="bi bi-tools text-primary"></i> Chọn dịch vụ</h5>
+                            <div class="position-relative" style="min-width:260px;">
+                                <input type="text" class="form-control search-box ps-5" placeholder="Tìm dịch vụ..." id="serviceSearch" autocomplete="off" />
+                                <i class="bi bi-search position-absolute search-icon"></i>
+                            </div>
+                        </div>
+
+                        @if (Model.Services == null || !Model.Services.Any())
+                        {
+                            <div class="alert alert-info m-0">Hiện chưa có dịch vụ nào.</div>
+                        }
+                        else
+                        {
+                            @foreach (var g in Model.Services.GroupBy(s => s.Type).OrderBy(g => g.Key))
+                            {
+                                <div class="service-group mb-4" data-group="@g.Key">
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <span class="badge rounded-pill bg-light text-dark border px-3 py-2"><i class="bi bi-folder2-open me-1"></i> Loại: <strong class="ms-1">@g.Key</strong></span>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table align-middle service-table">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th style="width:48px"></th>
+                                                    <th>Tên dịch vụ</th>
+                                                    <th style="width:160px">Thời lượng</th>
+                                                    <th class="text-end" style="width:160px">Giá</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach (var s in g)
+                                            {
+                                                var keywords = (s.Name + " " + s.Type + " " + s.Description)?.ToLower();
+                                                <tr class="service-row" data-keywords="@keywords">
+                                                    <td>
+                                                        <input class="form-check-input service-check" type="checkbox" value="@s.ServiceId" data-price="@s.Price" />
+                                                    </td>
+                                                    <td>
+                                                        <div class="fw-semibold">@s.Name</div>
+                                                        <div class="text-muted small">@s.Description</div>
+                                                        @if (!string.IsNullOrWhiteSpace(s.Type) && s.Type.Equals("Replace", StringComparison.OrdinalIgnoreCase))
+                                                        {
+                                                            if (s.PartDtos != null && s.PartDtos.Any())
+                                                            {
+                                                                <div class="mt-2 parts-line small">
+                                                                    <span class="text-secondary me-2"><i class="bi bi-box-seam"></i> Phụ tùng:</span>
+                                                                    @foreach (var p in s.PartDtos)
+                                                                    {
+                                                                        <span class="badge bg-light text-dark border me-1">@p.Name (@p.UnitPrice.ToString("N0") đ)</span>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                        }
+                                                    </td>
+                                                    <td>@s.Duration phút</td>
+                                                    <td class="text-end">@s.Price.ToString("N0") đ</td>
+                                                </tr>
+                                            }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            }
+                            <div id="selectedServicesSummary" class="mt-1 small text-muted"></div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-4">
+                        <h5 class="fw-semibold mb-3 d-flex align-items-center gap-2"><i class="bi bi-calendar-check text-primary"></i> Thời gian và ghi chú</h5>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label asp-for="CreateAppointmentDto.Date" class="form-label">Ngày giờ hẹn</label>
+                                <input asp-for="CreateAppointmentDto.Date" type="datetime-local" class="form-control" />
+                                <span asp-validation-for="CreateAppointmentDto.Date" class="text-danger small"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="CreateAppointmentDto.Notes" class="form-label">Ghi chú</label>
+                                <textarea asp-for="CreateAppointmentDto.Notes" class="form-control" rows="3" placeholder="Ghi chú cho kỹ thuật viên (tuỳ chọn)"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 d-flex justify-content-end gap-2">
+                <a asp-page="./Index" class="btn btn-light border">Hủy</a>
+                <button type="submit" class="btn btn-primary">Đặt lịch</button>
+            </div>
+        </div>
+
+        <div id="serviceHiddenFields"></div>
+    </form>
+</div>
+</div>
+
+@section Scripts {
+<script>
+(function () {
+    const vehicleCards = document.querySelectorAll('.selectable-card');
+    const vehicleSummary = document.getElementById('selectedVehicleSummary');
+    vehicleCards.forEach(card => {
+        const input = card.querySelector('input[type="radio"]');
+        function updateState() {
+            document.querySelectorAll('.selectable-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            input.checked = true;
+            if (vehicleSummary) {
+                const model = card.getAttribute('data-model') || '';
+                const plate = card.getAttribute('data-plate') || '';
+                const vin = card.getAttribute('data-vin') || '';
+                vehicleSummary.textContent = `Đang chọn: ${model} • Biển số: ${plate || '-'} • VIN: ${vin || '-'}`;
+            }
+        }
+        card.addEventListener('click', (e) => { if (e.target !== input) updateState(); });
+        input.addEventListener('change', updateState);
+    });
+
+    const serviceSearch = document.getElementById('serviceSearch');
+    serviceSearch?.addEventListener('input', function () {
+        const q = this.value.trim().toLowerCase();
+        document.querySelectorAll('.service-row').forEach(tr => {
+            const keywords = tr.getAttribute('data-keywords') || '';
+            tr.style.display = (!q || keywords.includes(q)) ? '' : 'none';
+        });
+    });
+
+    const form = document.getElementById('createAppointmentForm');
+    const hiddenContainer = document.getElementById('serviceHiddenFields');
+    const summaryBox = document.getElementById('selectedServicesSummary');
+    function updateSummary() {
+        const selected = Array.from(document.querySelectorAll('.service-check:checked'));
+        if (!summaryBox) return;
+        if (!selected.length) { summaryBox.textContent = ''; return; }
+        const totalPrice = selected.reduce((sum, el) => sum + parseFloat(el.getAttribute('data-price') || '0'), 0);
+        summaryBox.textContent = `Đã chọn ${selected.length} dịch vụ | Tổng tạm tính: ${totalPrice.toLocaleString('vi-VN')} đ`;
+    }
+    document.querySelectorAll('.service-check').forEach(chk => chk.addEventListener('change', updateSummary));
+    updateSummary();
+
+    form?.addEventListener('submit', () => {
+        hiddenContainer.innerHTML = '';
+        const selected = Array.from(document.querySelectorAll('.service-check:checked'));
+        selected.forEach((el, i) => {
+            const idInput = document.createElement('input');
+            idInput.type = 'hidden';
+            idInput.name = `CreateAppointmentDto.CreateServiceOrderDetailDtos[${i}].ServiceId`;
+            idInput.value = el.value;
+            hiddenContainer.appendChild(idInput);
+
+            const qtyInput = document.createElement('input');
+            qtyInput.type = 'hidden';
+            qtyInput.name = `CreateAppointmentDto.CreateServiceOrderDetailDtos[${i}].Quantity`;
+            qtyInput.value = '1';
+            hiddenContainer.appendChild(qtyInput);
+        });
+    });
+})();
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+<link rel="stylesheet" href="~/css/customer-vehicle.css" />
+<style>
+.page-scroll-y{height:100vh;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding-bottom:1rem}
+.selectable-card{position:relative;cursor:pointer;border:1px solid #e5e7eb;border-radius:1.25rem;transition:border-color .2s,box-shadow .2s,transform .2s}
+.selectable-card.selected,.selectable-card:hover{border-color:#0d6efd;box-shadow:0 .75rem 1.5rem rgba(13,110,253,.15);transform:translateY(-2px)}
+.selected-badge{position:absolute;top:.5rem;right:.5rem;display:none;align-items:center;gap:.25rem;background:#0d6efd;color:#fff;border-radius:1rem;padding:.15rem .5rem;font-size:.75rem}
+.selectable-card.selected .selected-badge{display:inline-flex}
+.parts-line .badge{font-weight:500}
+.search-icon{left:.75rem}
+</style>
+}

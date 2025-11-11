@@ -20,5 +20,13 @@ namespace DAL.Repository
                 .ThenInclude(x => x.Part)
                 .ToListAsync();
         }
+
+        public async Task<Service?> GetServiceByIdAsync(int serviceId)
+        {
+            return await dbContext.Services
+                .Include(s => s.ServiceParts)
+                .ThenInclude(x => x.Part)
+                .FirstOrDefaultAsync(s => s.ServiceId == serviceId);
+        }
     }
 }

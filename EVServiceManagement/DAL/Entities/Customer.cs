@@ -15,5 +15,7 @@ public partial class Customer
 
     public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
 
+    public virtual ICollection<ServiceReview> ServiceReviews { get; set; } = new List<ServiceReview>();
+
     public virtual ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
 }

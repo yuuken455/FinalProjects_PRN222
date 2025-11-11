@@ -22,5 +22,15 @@ namespace DAL.Repository
                 .Include(a => a.Technician)
                 .FirstOrDefaultAsync(a => a.Email == email);
         }
+
+        public async Task<Account?> GetAccountByPhoneAsync(string phone)
+        {
+            return await dbContext.Accounts
+                .Include(a => a.Customer)
+                .Include(a => a.Manager)
+                .Include(a => a.Staff)
+                .Include(a => a.Technician)
+                .FirstOrDefaultAsync(a => a.Phone == phone);
         }
+    }
 }

@@ -1,0 +1,52 @@
+﻿@page
+@model RazorPage.Pages.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="login-page"><!-- reuse same container classes for consistent styling -->
+    <div class="login-card shadow-sm">
+        <h1 class="h4 mb-3 text-center">Đăng ký</h1>
+
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger" role="alert">
+                @Model.ErrorMessage
+            </div>
+        }
+
+        <form method="post" asp-antiforgery="true">
+            <div class="mb-3">
+                <label asp-for="CreateCustomerDto.CreateAccountDto.FullName" class="form-label"></label>
+                <input asp-for="CreateCustomerDto.CreateAccountDto.FullName" class="form-control" required />
+                <span asp-validation-for="CreateCustomerDto.CreateAccountDto.FullName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="CreateCustomerDto.CreateAccountDto.Email" class="form-label"></label>
+                <input asp-for="CreateCustomerDto.CreateAccountDto.Email" type="email" class="form-control" required />
+                <span asp-validation-for="CreateCustomerDto.CreateAccountDto.Email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="CreateCustomerDto.CreateAccountDto.Password" class="form-label"></label>
+                <input asp-for="CreateCustomerDto.CreateAccountDto.Password" type="password" class="form-control" required />
+                <span asp-validation-for="CreateCustomerDto.CreateAccountDto.Password" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="CreateCustomerDto.CreateAccountDto.Phone" class="form-label"></label>
+                <input asp-for="CreateCustomerDto.CreateAccountDto.Phone" class="form-control" required />
+                <span asp-validation-for="CreateCustomerDto.CreateAccountDto.Phone" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="CreateCustomerDto.CreateAccountDto.Address" class="form-label"></label>
+                <input asp-for="CreateCustomerDto.CreateAccountDto.Address" class="form-control" />
+                <span asp-validation-for="CreateCustomerDto.CreateAccountDto.Address" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mb-2">Tạo tài khoản</button>
+            <a asp-page="/Login" class="btn btn-outline-secondary w-100">Đã có tài khoản? Đăng nhập</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

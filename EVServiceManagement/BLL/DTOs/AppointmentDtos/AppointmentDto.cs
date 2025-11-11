@@ -13,7 +13,7 @@ namespace BLL.DTOs.AppointmentDtos
 
         public int VehicleId { get; set; }
 
-        public DateTime PreferredDate { get; set; }
+        public DateTime Date { get; set; }
 
         public string Status { get; set; } = null!;
 

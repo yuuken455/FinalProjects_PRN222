@@ -5,20 +5,28 @@
 }
 
 <header class="mb-4">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded shadow-sm">
-        <div class="container-fluid px-3">
-            <a class="navbar-brand fw-semibold" asp-page="./Index">EV Service</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#customerNavbar" aria-controls="customerNavbar" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white rounded-4 shadow-sm border">
+        <div class="container-fluid px-4 py-2">
+            <a class="navbar-brand fw-bold fs-4 text-primary d-flex align-items-center" asp-page="./Index">
+                <i class="bi bi-lightning-charge-fill me-2 text-warning"></i> EV Service
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#customerNavbar"
+                    aria-controls="customerNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="customerNavbar">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-2">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-3">
                     <li class="nav-item">
-                        <a class="btn btn-vehicles" asp-page="./Vehicle/Index">Xe của tôi</a>
+                        <a class="btn btn-vehicles px-3 py-2" asp-page="./Vehicle/Index">
+                            <i class="bi bi-car-front-fill me-1"></i> Xe của tôi
+                        </a>
                     </li>
                     <li class="nav-item">
                         <form method="post" asp-page-handler="Logout" class="d-inline" asp-antiforgery="true">
-                            <button type="submit" class="btn btn-outline-danger rounded-pill px-3">Đăng xuất</button>
+                            <button type="submit" class="btn btn-outline-danger rounded-pill px-3 py-2">
+                                <i class="bi bi-box-arrow-right me-1"></i> Đăng xuất
+                            </button>
                         </form>
                     </li>
                 </ul>
@@ -27,23 +35,28 @@
     </nav>
 </header>
 
-<section class="customer-hero p-5 mb-4 rounded-3 text-center text-lg-start">
-    <div class="container py-3">
-        <div class="row align-items-center g-4">
+<section class="customer-hero p-5 mb-5 rounded-4 text-center text-lg-start position-relative overflow-hidden">
+    <div class="floating-shape"></div>
+    <div class="container py-4 position-relative">
+        <div class="row align-items-center g-5">
             <div class="col-lg-7">
-                <h1 class="display-6 fw-bold mb-3">Chào mừng đến với dịch vụ bảo dưỡng xe điện</h1>
-                <p class="lead mb-4">Đặt lịch bảo dưỡng nhanh chóng, theo dõi tình trạng xe và khám phá các gói dịch vụ phù hợp cho bạn.</p>
-                <div class="d-flex gap-2 flex-wrap">
-                    <a class="btn btn-primary" asp-page="./Service/Index">Khám phá dịch vụ</a>
-                    <a class="btn btn-outline-primary" asp-page="./Appointment/Index">Lịch hẹn</a>
+                <h1 class="display-5 fw-bold mb-3 text-dark">🚗 Chào mừng đến với EV Service</h1>
+                <p class="lead mb-4 text-muted">Đặt lịch bảo dưỡng nhanh chóng, theo dõi tình trạng xe và khám phá các gói dịch vụ phù hợp dành riêng cho bạn.</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a class="btn btn-primary btn-lg shadow-sm px-4 rounded-pill" asp-page="./Service/Index">
+                        <i class="bi bi-tools me-2"></i> Khám phá dịch vụ
+                    </a>
+                    <a class="btn btn-outline-primary btn-lg px-4 rounded-pill" asp-page="./Appointment/Index">
+                        <i class="bi bi-calendar-check me-2"></i> Lịch hẹn
+                    </a>
                 </div>
             </div>
+
             <div class="col-lg-5 text-center">
-                <div class="hero-illustration rounded">
-                    <span class="visually-hidden">EV Service Illustration</span>
+                <div class="hero-illustration rounded-4 shadow-sm d-flex align-items-center justify-content-center">
+                    <i class="bi bi-ev-front display-1 text-primary opacity-75"></i>
                 </div>
             </div>
         </div>
     </div>
 </section>
-

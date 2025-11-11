@@ -2,161 +2,152 @@
 @model RazorPage.Pages.Customer.Appointment.IndexModel
 @{
     ViewData["Title"] = "Lịch hẹn của tôi";
+    var total = Model.AppointmentDtos?.Count ?? 0;
+    var pending = Model.AppointmentDtos?.Count(a => a.Status?.ToLower() == "pending") ?? 0;
+    var confirmed = Model.AppointmentDtos?.Count(a => a.Status?.ToLower() == "confirmed") ?? 0;
+    var completed = Model.AppointmentDtos?.Count(a => a.Status?.ToLower() == "completed") ?? 0;
 }
 
-<div class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="fw-bold">📅 Lịch hẹn của bạn</h2>
-        <a asp-page="/Customer/Appointment/Create" class="btn btn-primary">
-            <i class="bi bi-plus-circle"></i> Đặt lịch mới
-        </a>
+<div class="container-xxl py-4">
+    <div class="page-header mb-4">
+        <div class="d-flex flex-wrap gap-3 align-items-start justify-content-between">
+            <div>
+                <h1 class="page-title mb-1 fw-semibold">Lịch hẹn của tôi</h1>
+                <p class="text-secondary mb-0 small">Theo dõi và quản lý lịch hẹn dịch vụ xe của bạn.</p>
+            </div>
+            <div class="d-flex gap-2">
+                <a asp-page="Create" class="btn btn-primary shadow-sm"><i class="bi bi-plus-circle me-1"></i> Tạo lịch hẹn</a>
+                <a asp-page="../Index" class="btn btn-outline-secondary shadow-sm"><i class="bi bi-arrow-left me-1"></i> Quay về</a>
+            </div>
+        </div>
+        <div class="stats-bar mt-3 d-flex flex-wrap gap-3">
+            <div class="stat-box bg-gradient-primary text-white"><div class="label">Tổng</div><div class="value">@total</div></div>
+            <div class="stat-box bg-gradient-warning text-white"><div class="label">Chờ xác nhận</div><div class="value">@pending</div></div>
+            <div class="stat-box bg-gradient-info text-white"><div class="label">Đã xác nhận</div><div class="value">@confirmed</div></div>
+            <div class="stat-box bg-gradient-success text-white"><div class="label">Hoàn tất</div><div class="value">@completed</div></div>
+        </div>
+    </div>
+
+    <div class="tool-bar mb-4 d-flex flex-column flex-lg-row gap-3 align-items-stretch">
+        <div class="flex-grow-1 position-relative">
+            <input type="text" class="form-control search-box ps-5" placeholder="Tìm kiếm theo mã, xe, ghi chú..." id="searchBox" autocomplete="off" />
+            <i class="bi bi-search position-absolute search-icon"></i>
+        </div>
+        <div class="d-flex flex-wrap gap-2" id="statusFilters">
+            <button type="button" class="filter-chip active" data-status="all"><i class="bi bi-ui-checks-grid me-1"></i>Tất cả</button>
+            <button type="button" class="filter-chip" data-status="pending"><i class="bi bi-hourglass-split me-1"></i>Chờ</button>
+            <button type="button" class="filter-chip" data-status="scheduled"><i class="bi bi-check-circle me-1"></i>Lên lịch</button>
+            <button type="button" class="filter-chip" data-status="completed"><i class="bi bi-flag me-1"></i>Hoàn tất</button>
+            <button type="button" class="filter-chip" data-status="cancelled"><i class="bi bi-x-circle me-1"></i>Huỷ</button>
+        </div>
     </div>
 
     @if (Model.AppointmentDtos == null || !Model.AppointmentDtos.Any())
     {
-        <div class="alert alert-info text-center">
-            Bạn chưa có lịch hẹn nào. Hãy <a asp-page="/Customer/Appointment/Create">đặt lịch ngay</a> để bảo dưỡng xe của bạn!
+        <div class="empty-state text-center py-5 px-3 border rounded-4 bg-white shadow-sm">
+            <div class="display-6 mb-3 text-muted"><i class="bi bi-calendar2-check"></i></div>
+            <h5 class="fw-semibold mb-2">Bạn chưa có lịch hẹn nào</h5>
+            <p class="text-secondary mb-4 small">Tạo lịch hẹn đầu tiên để bắt đầu quản lý dịch vụ xe của bạn.</p>
+            <a asp-page="Create" class="btn btn-primary btn-lg shadow-sm"><i class="bi bi-plus-circle me-1"></i> Tạo lịch hẹn</a>
         </div>
     }
     else
     {
-        <div class="table-responsive shadow-sm rounded">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-light">
-                    <tr>
-                        <th>Mã lịch hẹn</th>
-                        <th>Xe</th>
-                        <th>Ngày hẹn</th>
-                        <th>Dịch vụ</th>
-                        <th>Kỹ thuật viên</th>
-                        <th>Tổng chi phí</th>
-                        <th>Thanh toán</th>
-                        <th>Trạng thái</th>
-                        <th class="text-center">Thao tác</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var appt in Model.AppointmentDtos.OrderByDescending(x => x.PreferredDate))
-                    {
-                        var payment = appt.PaymentDtos.FirstOrDefault();
-                        var totalAmount = payment?.TotalAmount ?? 0;
-                        var paid = payment?.PaidAmount ?? 0;
-                       // var remaining = payment?.RemainingAmount ?? totalAmount;
-                       // var paymentStatus = payment?.PaymentStatus ?? "Chưa thanh toán";
-
-                        <tr>
-                            <td>#@appt.AppointmentId</td>
-                            <td>
-                                <div>
-                                    <strong>@appt.VehicleDto.Model</strong><br />
-                                    <small class="text-muted">@appt.VehicleDto.LicensePlate</small>
+        <div id="appointmentContainer" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach (var a in Model.AppointmentDtos.OrderByDescending(x => x.Date))
+            {
+                var status = a.Status?.ToLower();
+                string color = status switch
+                {
+                    "pending" => "warning",
+                    "confirmed" => "info",
+                    "completed" => "success",
+                    "cancelled" => "secondary",
+                    _ => "dark"
+                };
+                var keywords = (a.AppointmentId + " " + a.VehicleId + " " + a.Notes + " " + a.Status)?.ToLower();
+                <div class="col appointment-item" data-status="@status" data-keywords="@keywords">
+                    <div class="appointment-card card h-100 border-0 shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div class="d-flex align-items-center gap-2 flex-grow-1">
+                                    <div class="appointment-avatar bg-primary-subtle text-primary"><i class="bi bi-calendar-event"></i></div>
+                                    <h6 class="card-title mb-0">LH-@a.AppointmentId</h6>
                                 </div>
-                            </td>
-                            <td>@appt.PreferredDate.ToString("dd/MM/yyyy HH:mm")</td>
-                            <td>
-                                @if (appt.ServiceOrderDetailDtos.Any())
+                                <span class="badge status-badge bg-@color text-uppercase">@a.Status</span>
+                            </div>
+                            <div class="small text-muted mb-2">Ngày: @a.Date.ToString("dd/MM/yyyy HH:mm")</div>
+                            <ul class="list-unstyled mb-3 small flex-grow-1">
+                                <li><strong>Xe ID:</strong> @a.VehicleId</li>
+                                <li><strong>Dịch vụ:</strong> @(a.ServiceOrderDetailDtos?.Count ?? 0) mục</li>
+                                <li><strong>Ghi chú:</strong> @(string.IsNullOrWhiteSpace(a.Notes) ? "-" : a.Notes)</li>
+                            </ul>
+                            <div class="d-flex gap-2 mt-auto">
+                                <a asp-page="Detail" asp-route-id="@a.AppointmentId" class="btn btn-sm btn-outline-primary flex-grow-1"><i class="bi bi-eye"></i> Chi tiết</a>
+                                @if (status == "pending")
                                 {
-                                    <ul class="list-unstyled mb-0">
-                                        @foreach (var s in appt.ServiceOrderDetailDtos.Take(2))
-                                        {
-                                            <li>- @s.ServiceDto?.Name (@String.Format("{0:N0}₫", s.TotalPrice))</li>
-                                        }
-                                        @if (appt.ServiceOrderDetailDtos.Count > 2)
-                                        {
-                                            <li class="text-muted small">+ @appt.ServiceOrderDetailDtos.Count - 2 dịch vụ khác</li>
-                                        }
-                                    </ul>
+                                    <form method="post" asp-page-handler="Cancel" asp-route-id="@a.AppointmentId" onsubmit="return confirm('Huỷ lịch hẹn này?');" class="m-0">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-lg"></i></button>
+                                    </form>
                                 }
-                                else
-                                {
-                                    <span class="text-muted">Chưa có dịch vụ</span>
-                                }
-                            </td>
-                            <td>
-                                @if (appt.TechnicianDtos.Any())
-                                {
-                                    <ul class="list-unstyled mb-0">
-                                        @foreach (var t in appt.TechnicianDtos)
-                                        {
-                                            <li>@t.AccountDto.FullName</li>
-                                        }
-                                    </ul>
-                                }
-                                else
-                                {
-                                    <span class="text-muted">Chưa phân công</span>
-                                }
-                            </td>
-                            <td>@String.Format("{0:N0}₫", totalAmount)</td>
-                            <td>
-                                @* @if (remaining == 0)
-                                {
-                                    <span class="badge bg-success">Đã thanh toán</span>
-                                }
-                                else if (paid > 0)
-                                {
-                                    <span class="badge bg-warning text-dark">Đã trả @String.Format("{0:N0}₫", paid)</span>
-                                }
-                                else
-                                {
-                                    <span class="badge bg-secondary">Chưa thanh toán</span>
-                                } *@
-                            </td>
-                            <td>
-                                @switch (appt.Status)
-                                {
-                                    case "Pending":
-                                        <span class="badge bg-warning text-dark">Chờ xác nhận</span>
-                                        ;
-                                        break;
-                                    case "Confirmed":
-                                        <span class="badge bg-info text-dark">Đã xác nhận</span>
-                                        ;
-                                        break;
-                                    case "InProgress":
-                                        <span class="badge bg-primary">Đang bảo dưỡng</span>
-                                        ;
-                                        break;
-                                    case "Completed":
-                                        <span class="badge bg-success">Hoàn tất</span>
-                                        ;
-                                        break;
-                                    case "Cancelled":
-                                        <span class="badge bg-secondary">Đã hủy</span>
-                                        ;
-                                        break;
-                                    default:
-                                        <span class="badge bg-light text-dark">@appt.Status</span>
-                                        ;
-                                        break;
-                                }
-                            </td>
-                            <td class="text-center">
-                                <a asp-page="Details" asp-route-id="@appt.AppointmentId" class="btn btn-sm btn-outline-info me-1">
-                                    <i class="bi bi-eye"></i> Xem
-                                </a>
-
-                                @if (appt.Status == "Pending")
-                                {
-                                    <a asp-page="Cancel" asp-route-id="@appt.AppointmentId"
-                                       class="btn btn-sm btn-outline-danger me-1"
-                                       onclick="return confirm('Bạn có chắc muốn hủy lịch hẹn này không?');">
-                                        <i class="bi bi-x-circle"></i> Hủy
-                                    </a>
-                                }
-
-                                @if (appt.Status == "Completed")
-                                {
-                                    <a asp-page="Rebook" asp-route-id="@appt.AppointmentId"
-                                       class="btn btn-sm btn-outline-success">
-                                        <i class="bi bi-arrow-repeat"></i> Đặt lại
-                                    </a>
-                                }
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     }
 </div>
+
+@section Scripts {
+<script>
+(function(){
+    const searchBox = document.getElementById('searchBox');
+    const container = document.getElementById('appointmentContainer');
+    const filterChips = document.querySelectorAll('#statusFilters .filter-chip');
+
+    function applyFilters(){
+        const q = searchBox.value.trim().toLowerCase();
+        const activeChip = document.querySelector('#statusFilters .filter-chip.active');
+        const statusFilter = activeChip?.dataset.status || 'all';
+        const items = container ? Array.from(container.querySelectorAll('.appointment-item')) : [];
+        items.forEach(el => {
+            const keywords = el.dataset.keywords || '';
+            const status = el.dataset.status || '';
+            const matchSearch = !q || keywords.includes(q);
+            const matchStatus = statusFilter === 'all' || status === statusFilter;
+            el.style.display = (matchSearch && matchStatus) ? '' : 'none';
+        });
+    }
+
+    searchBox?.addEventListener('input', applyFilters);
+    filterChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            filterChips.forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            applyFilters();
+        });
+    });
+})();
+</script>
+<style>
+.page-title{letter-spacing:.5px}
+.stats-bar .stat-box{padding:.85rem 1.15rem;border-radius:1rem;min-width:150px;position:relative;overflow:hidden}
+.stats-bar .stat-box .label{font-size:.65rem;text-transform:uppercase;opacity:.85;letter-spacing:.5px}
+.stats-bar .stat-box .value{font-size:1.3rem;font-weight:600}
+.bg-gradient-primary{background:linear-gradient(135deg,#4e73df,#224abe)}
+.bg-gradient-warning{background:linear-gradient(135deg,#f6c23e,#d39e00)}
+.bg-gradient-info{background:linear-gradient(135deg,#36b9cc,#258fa0)}
+.bg-gradient-success{background:linear-gradient(135deg,#1cc88a,#0f8f5d)}
+.search-box{border-radius:1rem;box-shadow:0 .125rem .5rem rgba(0,0,0,.05)}
+.search-icon{top:50%;left:1rem;transform:translateY(-50%);color:#6c757d}
+.filter-chip{border:none;background:#f1f3f5;color:#495057;padding:.5rem .9rem;border-radius:2rem;font-size:.7rem;font-weight:600;letter-spacing:.5px;display:flex;align-items:center;gap:.25rem;cursor:pointer;transition:.25s}
+.filter-chip.active,.filter-chip:hover{background:#0d6efd;color:#fff}
+.appointment-card{transition:transform .25s ease,box-shadow .25s ease,border-color .25s;border:1px solid #e5e7eb;border-radius:1.25rem}
+.appointment-card:hover{transform:translateY(-6px);box-shadow:0 .75rem 1.5rem rgba(0,0,0,.12);border-color:#d0d7de}
+.appointment-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.status-badge{font-size:.6rem;letter-spacing:.5px}
+.empty-state{animation:fadeIn .4s ease}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+}

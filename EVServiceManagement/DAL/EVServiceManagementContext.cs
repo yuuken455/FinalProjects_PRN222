@@ -36,19 +36,13 @@ public partial class EVServiceManagementContext : DbContext
 
     public virtual DbSet<ServicePart> ServiceParts { get; set; }
 
-    public virtual DbSet<ShiftChangeRequest> ShiftChangeRequests { get; set; }
-
     public virtual DbSet<Staff> Staffs { get; set; }
 
     public virtual DbSet<Technician> Technicians { get; set; }
 
     public virtual DbSet<TechnicianAssignment> TechnicianAssignments { get; set; }
 
-    public virtual DbSet<TechnicianSchedule> TechnicianSchedules { get; set; }
-
     public virtual DbSet<Vehicle> Vehicles { get; set; }
-
-    public virtual DbSet<WorkShift> WorkShifts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -78,7 +72,7 @@ public partial class EVServiceManagementContext : DbContext
             entity.HasKey(e => e.AppointmentId).HasName("PK__Appointm__8ECDFCC224451A9F");
 
             entity.Property(e => e.Notes).HasMaxLength(500);
-            entity.Property(e => e.PreferredDate).HasColumnType("datetime");
+            entity.Property(e => e.Date).HasColumnType("datetime");
             entity.Property(e => e.Status)
                 .HasMaxLength(20)
                 .IsUnicode(false)
@@ -169,7 +163,7 @@ public partial class EVServiceManagementContext : DbContext
             entity.Property(e => e.PaidAmount)
                 .HasDefaultValue(0m)
                 .HasColumnType("decimal(12, 2)");
-            entity.Property(e => e.PaymentStatus)
+            entity.Property(e => e.Status)
                 .HasMaxLength(20)
                 .IsUnicode(false);
             entity.Property(e => e.RemainingAmount)
@@ -180,8 +174,7 @@ public partial class EVServiceManagementContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
 
-            entity.HasOne(d => d.Appointment).WithMany(p => p.Payments)
-                .HasForeignKey(d => d.AppointmentId)
+            entity.HasOne(d => d.Appointment).WithOne(p => p.Payment)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Payments__Appoin__6754599E");
 
@@ -240,10 +233,6 @@ public partial class EVServiceManagementContext : DbContext
                 .HasForeignKey(d => d.AppointmentId)
                 .HasConstraintName("FK__ServiceOr__Appoi__5CD6CB2B");
 
-            entity.HasOne(d => d.Part).WithMany(p => p.ServiceOrderDetails)
-                .HasForeignKey(d => d.PartId)
-                .HasConstraintName("FK__ServiceOr__PartI__5EBF139D");
-
             entity.HasOne(d => d.Service).WithMany(p => p.ServiceOrderDetails)
                 .HasForeignKey(d => d.ServiceId)
                 .HasConstraintName("FK__ServiceOr__Servi__5DCAEF64");
@@ -260,37 +249,6 @@ public partial class EVServiceManagementContext : DbContext
             entity.HasOne(d => d.Service).WithMany(p => p.ServiceParts)
                 .HasForeignKey(d => d.ServiceId)
                 .HasConstraintName("FK__ServicePa__Servi__5441852A");
-        });
-
-        modelBuilder.Entity<ShiftChangeRequest>(entity =>
-        {
-            entity.HasKey(e => e.RequestId).HasName("PK__ShiftCha__33A8517A69BCD4F8");
-
-            entity.Property(e => e.ApprovedDate).HasColumnType("datetime");
-            entity.Property(e => e.Notes).HasMaxLength(255);
-            entity.Property(e => e.Reason).HasMaxLength(500);
-            entity.Property(e => e.RequestedDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.Status)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasDefaultValue("Pending");
-
-            entity.HasOne(d => d.Receiver).WithMany(p => p.ShiftChangeRequestReceivers)
-                .HasForeignKey(d => d.ReceiverId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__ShiftChan__Recei__03F0984C");
-
-            entity.HasOne(d => d.Requester).WithMany(p => p.ShiftChangeRequestRequesters)
-                .HasForeignKey(d => d.RequesterId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__ShiftChan__Reque__02FC7413");
-
-            entity.HasOne(d => d.Schedule).WithMany(p => p.ShiftChangeRequests)
-                .HasForeignKey(d => d.ScheduleId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__ShiftChan__Sched__04E4BC85");
         });
 
         modelBuilder.Entity<Staff>(entity =>
@@ -340,27 +298,6 @@ public partial class EVServiceManagementContext : DbContext
                 .HasConstraintName("FK__Technicia__Techn__628FA481");
         });
 
-        modelBuilder.Entity<TechnicianSchedule>(entity =>
-        {
-            entity.HasKey(e => e.ScheduleId).HasName("PK__Technici__9C8A5B492550FECC");
-
-            entity.Property(e => e.Notes).HasMaxLength(255);
-            entity.Property(e => e.Status)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasDefaultValue("Scheduled");
-
-            entity.HasOne(d => d.Shift).WithMany(p => p.TechnicianSchedules)
-                .HasForeignKey(d => d.ShiftId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Technicia__Shift__7F2BE32F");
-
-            entity.HasOne(d => d.Technician).WithMany(p => p.TechnicianSchedules)
-                .HasForeignKey(d => d.TechnicianId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Technicia__Techn__7E37BEF6");
-        });
-
         modelBuilder.Entity<Vehicle>(entity =>
         {
             entity.HasKey(e => e.VehicleId).HasName("PK__Vehicles__476B549281B521F5");
@@ -383,14 +320,6 @@ public partial class EVServiceManagementContext : DbContext
                 .HasForeignKey(d => d.CustomerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Vehicles__Custom__4AB81AF0");
-        });
-
-        modelBuilder.Entity<WorkShift>(entity =>
-        {
-            entity.HasKey(e => e.ShiftId).HasName("PK__WorkShif__C0A838811755B6BF");
-
-            entity.Property(e => e.IsActive).HasDefaultValue(true);
-            entity.Property(e => e.Name).HasMaxLength(100);
         });
 
         OnModelCreatingPartial(modelBuilder);

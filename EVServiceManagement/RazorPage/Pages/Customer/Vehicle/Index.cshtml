@@ -2,90 +2,129 @@
 @model RazorPage.Pages.Customer.Vehicle.IndexModel
 @{
     ViewData["Title"] = "Xe của tôi";
+    var total = Model.MyVehicle?.Count ?? 0;
+    var active = Model.MyVehicle?.Count(v => v.Status?.ToLower() == "active") ?? 0;
 }
 
-<div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
-    <h1 class="h3 m-0">Xe của tôi</h1>
-    <div class="d-flex gap-2">
-        <a asp-page="Create" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Thêm xe</a>
-        <button type="button" class="btn btn-outline-secondary" id="toggleViewBtn">Chế độ hiển thị</button>
+<div class="container-xxl py-4">
+    <div class="page-header mb-4">
+        <div class="d-flex flex-wrap gap-3 align-items-start justify-content-between">
+            <div>
+                <h1 class="page-title mb-1 fw-semibold">Xe của tôi</h1>
+                <p class="text-secondary mb-0 small">Quản lý danh sách phương tiện của bạn một cách dễ dàng.</p>
+            </div>
+            <div class="d-flex gap-2">
+                <a asp-page="../Index" class="btn btn-outline-secondary shadow-sm"><i class="bi bi-arrow-left me-1"></i> Quay về</a>
+                <a asp-page="Create" class="btn btn-primary shadow-sm"><i class="bi bi-plus-circle me-1"></i> Thêm xe</a>
+                <button type="button" class="btn btn-outline-secondary shadow-sm" id="toggleViewBtn"><i class="bi bi-layout-text-sidebar-reverse me-1"></i> Chế độ danh sách</button>
+            </div>
+        </div>
+        <div class="stats-bar mt-3 d-flex flex-wrap gap-3">
+            <div class="stat-box bg-gradient-primary text-white">
+                <div class="label">Tổng số xe</div>
+                <div class="value">@total</div>
+            </div>
+            <div class="stat-box bg-gradient-success text-white">
+                <div class="label">Đang hoạt động</div>
+                <div class="value">@active</div>
+            </div>
+        </div>
     </div>
-</div>
 
-<div class="input-group mb-4 shadow-sm">
-    <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
-    <input type="text" class="form-control border-start-0" placeholder="Tìm kiếm theo Model, Biển số..." id="searchBox" />
-</div>
-
-@if (Model.MyVehicle == null || !Model.MyVehicle.Any())
-{
-    <div class="text-center py-5 border rounded-3 bg-light">
-        <p class="lead mb-3">Bạn chưa có xe nào được lưu.</p>
-        <a asp-page="Create" class="btn btn-primary btn-lg">+ Thêm xe đầu tiên</a>
+    <div class="tool-bar mb-4 d-flex flex-column flex-lg-row gap-3 align-items-stretch">
+        <div class="flex-grow-1 position-relative">
+            <input type="text" class="form-control search-box ps-5" placeholder="Tìm kiếm nhanh (Model, Biển số, VIN)" id="searchBox" autocomplete="off" />
+            <i class="bi bi-search position-absolute search-icon"></i>
+        </div>
+        <div class="d-flex flex-wrap gap-2" id="statusFilters">
+            <button type="button" class="filter-chip active" data-status="all"><i class="bi bi-ui-checks-grid me-1"></i>Tất cả</button>
+            <button type="button" class="filter-chip" data-status="active"><i class="bi bi-lightning-charge-fill me-1"></i>Hoạt động</button>
+        </div>
     </div>
-}
-else
-{
-    <div id="vehicleContainer" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        @foreach (var v in Model.MyVehicle)
-        {
-            if (v.Status == "Active")
+
+    @if (Model.MyVehicle == null || !Model.MyVehicle.Any())
+    {
+        <div class="empty-state text-center py-5 px-3 border rounded-4 bg-white shadow-sm">
+            <div class="display-6 mb-3 text-muted"><i class="bi bi-car-front"></i></div>
+            <h5 class="fw-semibold mb-2">Bạn chưa có xe nào</h5>
+            <p class="text-secondary mb-4 small">Hãy thêm chiếc xe đầu tiên để bắt đầu theo dõi và quản lý thông tin.</p>
+            <a asp-page="Create" class="btn btn-primary btn-lg shadow-sm"><i class="bi bi-plus-circle me-1"></i> Thêm xe đầu tiên</a>
+        </div>
+    }
+    else
+    {
+        <div id="vehicleContainer" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach (var v in Model.MyVehicle)
             {
-                <div class="col vehicle-item" data-keywords="@((v.Model + " " + v.LicensePlate + " " + v.Vin)?.ToLower())">
-                    <div class="card h-100 border-0 shadow-sm hover-card">
+                <div class="col vehicle-item" data-status="@v.Status?.ToLower()" data-keywords="@((v.Model + " " + v.LicensePlate + " " + v.Vin)?.ToLower())">
+                    <div class="vehicle-card card h-100 border-0 shadow-sm">
                         <div class="card-body d-flex flex-column">
                             <div class="d-flex justify-content-between align-items-start mb-2">
-                                <h5 class="card-title mb-0 text-truncate" title="@v.Model">@v.Model</h5>
-                                <span class="badge bg-@GetStatusColor(v.Status)">@v.Status</span>
+                                <div class="d-flex align-items-center gap-2 flex-grow-1">
+                                    <div class="vehicle-avatar bg-primary-subtle text-primary"><i class="bi bi-car-front-fill"></i></div>
+                                    <h5 class="card-title mb-0 text-truncate" title="@v.Model">@v.Model</h5>
+                                </div>
+                                <span class="badge status-badge bg-@GetStatusColor(v.Status)">@v.Status</span>
                             </div>
-                            <div class="small text-muted mb-2">ID: @v.VehicleId</div>
-                            <ul class="list-unstyled mb-3 small flex-grow-1">
-                                <li><strong>VIN:</strong> @DisplayOrDash(v.Vin)</li>
-                                <li><strong>Biển số:</strong> @DisplayOrDash(v.LicensePlate)</li>
-                                <li><strong>Số km hiện tại:</strong> @(v.CurrentKm?.ToString("N0") ?? "-")</li>
-                            </ul>
-                            <div class="d-flex gap-2 mt-auto">
-                                <a asp-page="Edit" asp-route-id="@v.VehicleId" class="btn btn-sm btn-outline-primary flex-grow-1"><i class="bi bi-pencil-square"></i> Cập nhật</a>
+                            <div class="text-muted mb-3 small">ID: @v.VehicleId</div>
+                            <div class="details small flex-grow-1">
+                                <div class="detail-item"><span class="icon"><i class="bi bi-hash"></i></span>VIN: <span class="value">@DisplayOrDash(v.Vin)</span></div>
+                                <div class="detail-item"><span class="icon"><i class="bi bi-upc-scan"></i></span>Biển số: <span class="value">@DisplayOrDash(v.LicensePlate)</span></div>
+                                <div class="detail-item"><span class="icon"><i class="bi bi-speedometer2"></i></span>Số km: <span class="value">@(v.CurrentKm?.ToString("N0") ?? "-")</span></div>
+                            </div>
+                            <div class="mt-3 d-flex gap-2">
+                                <a asp-page="Edit" asp-route-id="@v.VehicleId" class="btn btn-sm btn-outline-primary flex-grow-1"><i class="bi bi-pencil-square me-1"></i>Cập nhật</a>
                                 <a asp-page="Delete" asp-route-id="@v.VehicleId" class="btn btn-sm btn-outline-danger" title="Xóa" onclick="return confirm('Xác nhận xóa xe này?');"><i class="bi bi-trash"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
             }
-        }
-    </div>
-}
+        </div>
+    }
+</div>
 
 @section Scripts {
     <script>
         (function () {
             const searchBox = document.getElementById('searchBox');
-            const items = () => Array.from(document.querySelectorAll('#vehicleContainer .vehicle-item'));
-            searchBox?.addEventListener('input', function () {
-                const q = this.value.trim().toLowerCase();
-                items().forEach(el => {
-                    const match = !q || el.dataset.keywords.includes(q);
-                    el.style.display = match ? '' : 'none';
+            const container = document.getElementById('vehicleContainer');
+            const filterChips = document.querySelectorAll('#statusFilters .filter-chip');
+            const toggleBtn = document.getElementById('toggleViewBtn');
+            let listMode = false;
+
+            function applyFilters() {
+                const q = searchBox.value.trim().toLowerCase();
+                const activeChip = document.querySelector('#statusFilters .filter-chip.active');
+                const statusFilter = activeChip?.dataset.status || 'all';
+                const items = container ? Array.from(container.querySelectorAll('.vehicle-item')) : [];
+                items.forEach(el => {
+                    const keywords = el.dataset.keywords || '';
+                    const status = el.dataset.status || '';
+                    const matchSearch = !q || keywords.includes(q);
+                    const matchStatus = statusFilter === 'all' || status === statusFilter;
+                    el.style.display = (matchSearch && matchStatus) ? '' : 'none';
+                });
+            }
+
+            searchBox?.addEventListener('input', applyFilters);
+            filterChips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    filterChips.forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                    applyFilters();
                 });
             });
 
-            const toggleBtn = document.getElementById('toggleViewBtn');
-            let listMode = false;
             toggleBtn?.addEventListener('click', () => {
                 listMode = !listMode;
-                document.getElementById('vehicleContainer')?.classList.toggle('list-view', listMode);
-                toggleBtn.textContent = listMode ? 'Chế độ lưới' : 'Chế độ hiển thị';
+                container?.classList.toggle('list-view', listMode);
+                toggleBtn.innerHTML = listMode ? '<i class="bi bi-grid me-1"></i> Chế độ lưới' : '<i class="bi bi-layout-text-sidebar-reverse me-1"></i> Chế độ danh sách';
             });
         })();
     </script>
-    <style>
-        .hover-card { transition: transform .15s ease, box-shadow .15s ease; }
-        .hover-card:hover { transform: translateY(-4px); box-shadow: 0 .5rem 1rem rgba(0,0,0,.15); }
-        #vehicleContainer.list-view .col { flex: 0 0 100%; max-width: 100%; }
-        #vehicleContainer.list-view .card { flex-direction: row; }
-        #vehicleContainer.list-view .card-body { display: flex; }
-    </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="~/css/customer-vehicle.css" />
 }
 
 @functions {

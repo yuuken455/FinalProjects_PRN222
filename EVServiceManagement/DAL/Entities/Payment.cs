@@ -1,4 +1,7 @@
-﻿namespace DAL.Entities;
+﻿using System;
+using System.Collections.Generic;
+
+namespace DAL.Entities;
 
 public partial class Payment
 {
@@ -14,7 +17,7 @@ public partial class Payment
 
     public decimal? RemainingAmount { get; set; }
 
-    public string PaymentStatus { get; set; } = null!;
+    public string Status { get; set; } = null!;
 
     public DateTime? CreatedAt { get; set; }
 
