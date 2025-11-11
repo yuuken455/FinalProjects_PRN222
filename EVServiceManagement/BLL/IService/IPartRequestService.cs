@@ -4,7 +4,10 @@ namespace BLL.IService
 {
     public interface IPartRequestService
     {
-        Task<ICollection<PartRequestDto>> GetPartRequestByStaffId(int staffId);
-        Task AddPartRequest(CreatePartRequestDto createPartRequestDto);
+        Task<int> CreateAsync(CreatePartRequestDto dto);               // Staff
+        Task ApproveAsync(ApprovePartRequestDto dto);                  // Manager
+        Task ReceiveAsync(ReceivePartRequestDto dto);                  // Staff
+        Task<PartRequestDto?> GetAsync(int id);
+        Task<List<PartRequestDto>> ListAsync(string? status = null, int? staffId = null);
     }
 }

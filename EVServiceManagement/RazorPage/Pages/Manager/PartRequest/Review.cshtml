@@ -1,0 +1,42 @@
+﻿@page
+@model RazorPage.Pages.Manager.PartRequest.ReviewModel
+@{
+    Layout = "_ManagerLayout";
+    <!-- 💡 thêm dòng này -->
+    ViewData["Title"] = "Duyệt yêu cầu";
+}
+<h2 class="mb-3">Duyệt yêu cầu #@Model.Item?.RequestId</h2>
+
+@if (Model.Item == null)
+{
+    <div class="alert alert-warning">Không tìm thấy yêu cầu.</div>
+}
+else
+{
+    <div class="card">
+        <div class="card-body">
+            <div class="row g-2">
+                <div class="col-md-6"><strong>Linh kiện:</strong> @Model.Item.PartDto?.Name</div>
+                <div class="col-md-3"><strong>Số lượng:</strong> @Model.Item.Quantity</div>
+                <div class="col-md-3"><strong>Trạng thái:</strong> <span class="badge bg-warning text-dark">@Model.Item.Status</span></div>
+                <div class="col-md-6"><strong>Người yêu cầu (StaffId):</strong> @Model.Item.RequestedBy</div>
+                <div class="col-md-6"><strong>Ngày yêu cầu:</strong> @Model.Item.RequestDate?.ToString("dd/MM/yyyy HH:mm")</div>
+                <div class="col-12"><strong>Ghi chú:</strong> @Model.Item.Notes</div>
+            </div>
+        </div>
+    </div>
+
+    <form method="post" asp-page-handler="Approve" asp-route-id="@Model.Item!.RequestId">
+        <div class="mb-2">
+            <label class="form-label">Ghi chú của quản lý</label>
+            <textarea class="form-control" asp-for="Notes" rows="3"></textarea>
+        </div>
+        <button class="btn btn-success" type="submit">Duyệt (trừ kho)</button>
+        <a asp-page="Index" class="btn btn-secondary">Quay lại</a>
+    </form>
+
+    <form method="post" asp-page-handler="Reject" asp-route-id="@Model.Item!.RequestId" class="mt-2">
+        <input type="hidden" asp-for="Notes" />
+        <button class="btn btn-outline-danger" type="submit">Từ chối</button>
+    </form>
+}

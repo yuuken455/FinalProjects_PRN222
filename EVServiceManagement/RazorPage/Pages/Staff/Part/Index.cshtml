@@ -3,11 +3,10 @@
 @{
     Layout = "_StaffLayout";
 }
-
 <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
     <h1 class="h4 m-0"><i class="bi bi-tools me-2"></i>Kho linh kiện</h1>
     <div class="d-flex gap-2">
-        <a asp-page="/Staff/PartRequest/Index" class="btn btn-primary">
+        <a asp-page="/Staff/PartRequest/MyRequests" class="btn btn-primary">
             <i class="bi bi-box-arrow-up-right"></i> Đến trang PartRequest
         </a>
     </div>
@@ -41,14 +40,13 @@ else
                     <div class="card-body d-flex flex-column">
                         <div class="d-flex justify-content-between align-items-start mb-2">
                             <h5 class="card-title mb-0 text-truncate" title="@p.Name">@p.Name</h5>
-                            <span class="badge bg-@lowStock" title="@p.StockQuantity tồn kho">@p.StockQuantity</span>
+                            <span class="badge bg-@lowStock" title="@p.StockQuantity tồn kho" data-part-id="@p.PartId">@p.StockQuantity</span>
                         </div>
                         <div class="small text-muted mb-2">Mã: #@p.PartId</div>
                         <ul class="list-unstyled small mb-3 flex-grow-1">
                             <li><strong>Giá:</strong> @p.UnitPrice.ToString("N0") đ</li>
                             <li><strong>Trạng thái:</strong> @p.Status</li>
                         </ul>
-
                         <div class="d-flex gap-2 mt-auto">
                             <a asp-page="/Staff/PartRequest/Create" asp-route-partId="@p.PartId" class="btn btn-outline-primary w-100">
                                 <i class="bi bi-bag-plus"></i> Yêu cầu thêm linh kiện
@@ -75,8 +73,35 @@ else
             });
         })();
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script>
+        const connection = new signalR.HubConnectionBuilder().withUrl("/hubs/notify").withAutomaticReconnect().build();
+
+        function updateBadge(partId, stockAfter) {
+            const badge = document.querySelector(`[data-part-id="${partId}"]`);
+            if (!badge) return;
+            badge.textContent = stockAfter;
+            badge.classList.remove("bg-danger","bg-warning","bg-success");
+            const v = Number(stockAfter);
+            badge.classList.add(v <= 0 ? "bg-danger" : (v < 5 ? "bg-warning" : "bg-success"));
+        }
+
+        connection.on("PartReceived", msg => {
+            updateBadge(msg.partId, msg.stockAfter);
+        });
+
+        connection.start().catch(console.error);
+    </script>
+
     <style>
-        .part-card { transition: transform .18s ease, box-shadow .18s ease; }
-        .part-card:hover { transform: translateY(-4px); box-shadow: 0 .6rem 1.2rem rgba(0,0,0,.12); }
+        .part-card {
+            transition: transform .18s ease, box-shadow .18s ease;
+        }
+
+            .part-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 .6rem 1.2rem rgba(0,0,0,.12);
+            }
     </style>
 }

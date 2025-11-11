@@ -1,0 +1,39 @@
+﻿@page
+@model RazorPage.Pages.Manager.Part.EditModel
+@{
+    Layout = "_ManagerLayout";
+    <!-- 💡 thêm dòng này -->
+    ViewData["Title"] = "Sửa linh kiện";
+}
+<h2 class="mb-3">Sửa linh kiện</h2>
+
+<form method="post" class="card card-body">
+    <input type="hidden" asp-for="Input.PartId" />
+    <div class="mb-2">
+        <label class="form-label">Tên</label>
+        <input asp-for="Input.Name" class="form-control" />
+        <span asp-validation-for="Input.Name" class="text-danger"></span>
+    </div>
+    <div class="mb-2">
+        <label class="form-label">Đơn giá</label>
+        <input asp-for="Input.UnitPrice" class="form-control" />
+        <span asp-validation-for="Input.UnitPrice" class="text-danger"></span>
+    </div>
+    <div class="mb-2">
+        <label class="form-label">Tồn kho</label>
+        <input asp-for="Input.StockQuantity" class="form-control" />
+        <span asp-validation-for="Input.StockQuantity" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Trạng thái</label>
+        <select asp-for="Input.Status" class="form-select">
+            <option>Active</option>
+            <option>Inactive</option>
+        </select>
+    </div>
+
+    <div class="d-flex gap-2">
+        <button class="btn btn-primary" type="submit">Lưu</button>
+        <a asp-page="Index" class="btn btn-outline-secondary">Quay lại</a>
+    </div>
+</form>

@@ -1,6 +1,6 @@
 @page
 @model RazorPage.Pages.Staff.PartRequest.IndexModel
-@{
+@* @{
     Layout = "_StaffLayout";
     var statuses = new[] { "Pending", "Rejected", "Accepted", "Shipping", "Completed" };
     var groups = Model.PartRequestDtos
@@ -106,4 +106,4 @@
         "completed" => "success",
         _ => "light"
     };
-}
+} *@

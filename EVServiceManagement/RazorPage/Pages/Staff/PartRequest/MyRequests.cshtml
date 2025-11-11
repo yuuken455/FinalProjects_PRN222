@@ -1,0 +1,117 @@
+﻿@page
+@model RazorPage.Pages.Staff.PartRequest.MyRequestsModel
+@{
+    Layout = "_StaffLayout";
+    ViewData["Title"] = "Yêu cầu của tôi";
+}
+
+<h2 class="mb-3">Yêu cầu linh kiện của tôi</h2>
+
+@if (TempData["Msg"] is string m)
+{
+    <div class="alert alert-success">@m</div>
+}
+@if (TempData["Err"] is string e)
+{
+    <div class="alert alert-danger">@e</div>
+}
+
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Linh kiện</th>
+            <th>SL</th>
+            <th>Trạng thái</th>
+            <th>Ngày yêu cầu</th>
+            <th>Ghi chú</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="my-requests-tbody">
+        @foreach (var r in Model.Items)
+        {
+            <tr data-request-id="@r.RequestId">
+                <td>@r.RequestId</td>
+                <td>@r.PartDto?.Name</td>
+                <td class="qty">@r.Quantity</td>
+                <td class="status">
+                    @{
+                        var cls = r.Status switch
+                        {
+                            "Approved" => "bg-success",
+                            "Rejected" => "bg-danger",
+                            "Received" => "bg-primary",
+                            _ => "bg-secondary"
+                        };
+                    }
+                    <span class="badge @cls">@r.Status</span>
+                </td>
+                <td>@r.RequestDate?.ToString("dd/MM/yyyy HH:mm")</td>
+                <td class="notes">@r.Notes</td>
+                <td class="actions text-end">
+                    @if (r.Status == "Approved")
+                    {
+                        <form method="post" asp-page-handler="Receive" asp-route-id="@r.RequestId">
+                            <button class="btn btn-sm btn-outline-primary" type="submit">
+                                Xác nhận đã nhận
+                            </button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script>
+        const conn = new signalR.HubConnectionBuilder()
+            .withUrl("/hubs/notify")
+            .withAutomaticReconnect()
+            .build();
+
+        function setStatusBadge(cell, status) {
+            const map = { Approved:"bg-success", Rejected:"bg-danger", Received:"bg-primary", Pending:"bg-secondary" };
+            cell.innerHTML = `<span class="badge ${map[status]||"bg-secondary"}">${status}</span>`;
+        }
+
+        // Khi Manager duyệt/từ chối → cập nhật dòng
+        conn.on("RequestStatusChanged", msg => {
+            const row = document.querySelector(`tr[data-request-id="${msg.requestId}"]`);
+            if (!row) return;
+
+            setStatusBadge(row.querySelector(".status"), msg.status);
+
+            const actions = row.querySelector(".actions");
+            if (msg.status === "Approved") {
+                if (!actions.querySelector("form")) {
+                    actions.innerHTML = `
+                        <form method="post" action="?handler=Receive&id=${msg.requestId}">
+                            <button class="btn btn-sm btn-outline-primary" type="submit">Xác nhận đã nhận</button>
+                        </form>`;
+                }
+            } else {
+                actions.innerHTML = "";
+            }
+        });
+
+        // Khi Staff xác nhận nhận (service cũng bắn event này)
+        conn.on("PartReceived", msg => {
+            const row = document.querySelector(`tr[data-request-id="${msg.requestId}"]`);
+            if (!row) return;
+
+            setStatusBadge(row.querySelector(".status"), "Received");
+            row.querySelector(".actions").innerHTML = "";
+
+            const note = document.createElement("div");
+            note.className = "alert alert-info position-fixed bottom-0 end-0 m-3 shadow";
+            note.textContent = `📦 Yêu cầu #${msg.requestId} đã được xác nhận (+${msg.quantity})`;
+            document.body.appendChild(note);
+            setTimeout(() => note.remove(), 4000);
+        });
+
+        conn.start().catch(console.error);
+    </script>
+}

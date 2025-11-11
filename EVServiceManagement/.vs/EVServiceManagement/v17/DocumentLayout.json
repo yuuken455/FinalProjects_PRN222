@@ -1,10 +1,74 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\",
+  "WorkspaceRootPath": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{369C2E72-ABC6-4C3C-8482-295A072F7831}|BLL\\BLL.csproj|c:\\users\\koi22\\desktop\\fpt\\prn222\\final project\\evservicemanagement\\bll\\dtos\\appointmentdtos\\appointmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{369C2E72-ABC6-4C3C-8482-295A072F7831}|BLL\\BLL.csproj|solutionrelative:bll\\dtos\\appointmentdtos\\appointmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|c:\\users\\thanh\\desktop\\final\\finalprojects_prn222\\evservicemanagement\\razorpage\\pages\\manager\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|solutionrelative:razorpage\\pages\\manager\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|c:\\users\\thanh\\desktop\\final\\finalprojects_prn222\\evservicemanagement\\razorpage\\pages\\manager\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|solutionrelative:razorpage\\pages\\manager\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|c:\\users\\thanh\\desktop\\final\\finalprojects_prn222\\evservicemanagement\\razorpage\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|solutionrelative:razorpage\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{369C2E72-ABC6-4C3C-8482-295A072F7831}|BLL\\BLL.csproj|c:\\users\\thanh\\desktop\\final\\finalprojects_prn222\\evservicemanagement\\bll\\service\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{369C2E72-ABC6-4C3C-8482-295A072F7831}|BLL\\BLL.csproj|solutionrelative:bll\\service\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{369C2E72-ABC6-4C3C-8482-295A072F7831}|BLL\\BLL.csproj|c:\\users\\thanh\\desktop\\final\\finalprojects_prn222\\evservicemanagement\\bll\\iservice\\ireportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{369C2E72-ABC6-4C3C-8482-295A072F7831}|BLL\\BLL.csproj|solutionrelative:bll\\iservice\\ireportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35609349-CA16-405B-A1F8-23228302BDDE}|DAL\\DAL.csproj|c:\\users\\thanh\\desktop\\final\\finalprojects_prn222\\evservicemanagement\\dal\\irepository\\ireportrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35609349-CA16-405B-A1F8-23228302BDDE}|DAL\\DAL.csproj|solutionrelative:dal\\irepository\\ireportrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35609349-CA16-405B-A1F8-23228302BDDE}|DAL\\DAL.csproj|c:\\users\\thanh\\desktop\\final\\finalprojects_prn222\\evservicemanagement\\dal\\irepository\\iservicerepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35609349-CA16-405B-A1F8-23228302BDDE}|DAL\\DAL.csproj|solutionrelative:dal\\irepository\\iservicerepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{369C2E72-ABC6-4C3C-8482-295A072F7831}|BLL\\BLL.csproj|c:\\users\\thanh\\desktop\\final\\finalprojects_prn222\\evservicemanagement\\bll\\dtos\\reportdtos\\dashboarddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{369C2E72-ABC6-4C3C-8482-295A072F7831}|BLL\\BLL.csproj|solutionrelative:bll\\dtos\\reportdtos\\dashboarddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35609349-CA16-405B-A1F8-23228302BDDE}|DAL\\DAL.csproj|c:\\users\\thanh\\desktop\\final\\finalprojects_prn222\\evservicemanagement\\dal\\repository\\reportrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35609349-CA16-405B-A1F8-23228302BDDE}|DAL\\DAL.csproj|solutionrelative:dal\\repository\\reportrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|c:\\users\\thanh\\desktop\\final\\finalprojects_prn222\\evservicemanagement\\razorpage\\pages\\staff\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|solutionrelative:razorpage\\pages\\staff\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|c:\\users\\thanh\\desktop\\final\\finalprojects_prn222\\evservicemanagement\\razorpage\\pages\\staff\\partrequest\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|solutionrelative:razorpage\\pages\\staff\\partrequest\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|c:\\users\\thanh\\desktop\\final\\finalprojects_prn222\\evservicemanagement\\razorpage\\pages\\staff\\partrequest\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|solutionrelative:razorpage\\pages\\staff\\partrequest\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|c:\\users\\thanh\\desktop\\final\\finalprojects_prn222\\evservicemanagement\\razorpage\\pages\\staff\\partrequest\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|solutionrelative:razorpage\\pages\\staff\\partrequest\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|c:\\users\\thanh\\desktop\\final\\finalprojects_prn222\\evservicemanagement\\razorpage\\pages\\staff\\partrequest\\myrequests.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|solutionrelative:razorpage\\pages\\staff\\partrequest\\myrequests.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|c:\\users\\thanh\\desktop\\final\\finalprojects_prn222\\evservicemanagement\\razorpage\\pages\\staff\\part\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|solutionrelative:razorpage\\pages\\staff\\part\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|c:\\users\\thanh\\desktop\\final\\finalprojects_prn222\\evservicemanagement\\razorpage\\pages\\staff\\part\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|solutionrelative:razorpage\\pages\\staff\\part\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|c:\\users\\thanh\\desktop\\final\\finalprojects_prn222\\evservicemanagement\\razorpage\\pages\\staff\\partrequest\\myrequests.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|solutionrelative:razorpage\\pages\\staff\\partrequest\\myrequests.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +78,231 @@
       "DocumentGroups": [
         {
           "DockedHeight": 279,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Manager\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "RazorPage\\Pages\\Manager\\Index.cshtml.cs",
+              "ToolTip": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Manager\\Index.cshtml.cs",
+              "RelativeToolTip": "RazorPage\\Pages\\Manager\\Index.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T13:04:24.8Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Program.cs",
+              "RelativeDocumentMoniker": "RazorPage\\Program.cs",
+              "ToolTip": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Program.cs",
+              "RelativeToolTip": "RazorPage\\Program.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAC8AAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T13:03:38.019Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ReportService.cs",
+              "DocumentMoniker": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\BLL\\Service\\ReportService.cs",
+              "RelativeDocumentMoniker": "BLL\\Service\\ReportService.cs",
+              "ToolTip": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\BLL\\Service\\ReportService.cs",
+              "RelativeToolTip": "BLL\\Service\\ReportService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T13:03:12.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IServiceRepo.cs",
+              "DocumentMoniker": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\DAL\\IRepository\\IServiceRepo.cs",
+              "RelativeDocumentMoniker": "DAL\\IRepository\\IServiceRepo.cs",
+              "ToolTip": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\DAL\\IRepository\\IServiceRepo.cs",
+              "RelativeToolTip": "DAL\\IRepository\\IServiceRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T13:02:44.246Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IReportService.cs",
+              "DocumentMoniker": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\BLL\\IService\\IReportService.cs",
+              "RelativeDocumentMoniker": "BLL\\IService\\IReportService.cs",
+              "ToolTip": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\BLL\\IService\\IReportService.cs",
+              "RelativeToolTip": "BLL\\IService\\IReportService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T13:01:51.975Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IReportRepository.cs",
+              "DocumentMoniker": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\DAL\\IRepository\\IReportRepository.cs",
+              "RelativeDocumentMoniker": "DAL\\IRepository\\IReportRepository.cs",
+              "ToolTip": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\DAL\\IRepository\\IReportRepository.cs",
+              "RelativeToolTip": "DAL\\IRepository\\IReportRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T12:59:49.397Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AppointmentDto.cs",
-              "DocumentMoniker": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\BLL\\DTOs\\AppointmentDtos\\AppointmentDto.cs",
-              "RelativeDocumentMoniker": "BLL\\DTOs\\AppointmentDtos\\AppointmentDto.cs",
-              "ToolTip": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\Final project\\EVServiceManagement\\BLL\\DTOs\\AppointmentDtos\\AppointmentDto.cs",
-              "RelativeToolTip": "BLL\\DTOs\\AppointmentDtos\\AppointmentDto.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABsAAABDAAAAAAAAAA==",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Manager\\Index.cshtml",
+              "RelativeDocumentMoniker": "RazorPage\\Pages\\Manager\\Index.cshtml",
+              "ToolTip": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Manager\\Index.cshtml",
+              "RelativeToolTip": "RazorPage\\Pages\\Manager\\Index.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACwAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-11T12:54:47.639Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DashboardDto.cs",
+              "DocumentMoniker": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\BLL\\DTOs\\ReportDtos\\DashboardDto.cs",
+              "RelativeDocumentMoniker": "BLL\\DTOs\\ReportDtos\\DashboardDto.cs",
+              "ToolTip": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\BLL\\DTOs\\ReportDtos\\DashboardDto.cs",
+              "RelativeToolTip": "BLL\\DTOs\\ReportDtos\\DashboardDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T05:47:22.572Z",
+              "WhenOpened": "2025-11-11T13:02:19.273Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ReportRepository.cs",
+              "DocumentMoniker": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\DAL\\Repository\\ReportRepository.cs",
+              "RelativeDocumentMoniker": "DAL\\Repository\\ReportRepository.cs",
+              "ToolTip": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\DAL\\Repository\\ReportRepository.cs",
+              "RelativeToolTip": "DAL\\Repository\\ReportRepository.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAwwCcAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T13:00:04.453Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Staff\\Index.cshtml",
+              "RelativeDocumentMoniker": "RazorPage\\Pages\\Staff\\Index.cshtml",
+              "ToolTip": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Staff\\Index.cshtml",
+              "RelativeToolTip": "RazorPage\\Pages\\Staff\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-11T12:54:06.155Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Create.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Staff\\PartRequest\\Create.cshtml.cs",
+              "RelativeDocumentMoniker": "RazorPage\\Pages\\Staff\\PartRequest\\Create.cshtml.cs",
+              "ToolTip": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Staff\\PartRequest\\Create.cshtml.cs",
+              "RelativeToolTip": "RazorPage\\Pages\\Staff\\PartRequest\\Create.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T12:49:23.741Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Staff\\Part\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "RazorPage\\Pages\\Staff\\Part\\Index.cshtml.cs",
+              "ToolTip": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Staff\\Part\\Index.cshtml.cs",
+              "RelativeToolTip": "RazorPage\\Pages\\Staff\\Part\\Index.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T12:48:58.058Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Staff\\Part\\Index.cshtml",
+              "RelativeDocumentMoniker": "RazorPage\\Pages\\Staff\\Part\\Index.cshtml",
+              "ToolTip": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Staff\\Part\\Index.cshtml",
+              "RelativeToolTip": "RazorPage\\Pages\\Staff\\Part\\Index.cshtml",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAqwGoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-11T12:48:44.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Staff\\PartRequest\\Index.cshtml",
+              "RelativeDocumentMoniker": "RazorPage\\Pages\\Staff\\PartRequest\\Index.cshtml",
+              "ToolTip": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Staff\\PartRequest\\Index.cshtml",
+              "RelativeToolTip": "RazorPage\\Pages\\Staff\\PartRequest\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-11T12:48:28.179Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Staff\\PartRequest\\Create.cshtml",
+              "RelativeDocumentMoniker": "RazorPage\\Pages\\Staff\\PartRequest\\Create.cshtml",
+              "ToolTip": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Staff\\PartRequest\\Create.cshtml",
+              "RelativeToolTip": "RazorPage\\Pages\\Staff\\PartRequest\\Create.cshtml",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAqwCkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-11T12:48:24.088Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "MyRequests.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Staff\\PartRequest\\MyRequests.cshtml.cs",
+              "RelativeDocumentMoniker": "RazorPage\\Pages\\Staff\\PartRequest\\MyRequests.cshtml.cs",
+              "ToolTip": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Staff\\PartRequest\\MyRequests.cshtml.cs",
+              "RelativeToolTip": "RazorPage\\Pages\\Staff\\PartRequest\\MyRequests.cshtml.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAwwCkAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T12:40:15.428Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "MyRequests.cshtml",
+              "DocumentMoniker": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Staff\\PartRequest\\MyRequests.cshtml",
+              "RelativeDocumentMoniker": "RazorPage\\Pages\\Staff\\PartRequest\\MyRequests.cshtml",
+              "ToolTip": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Staff\\PartRequest\\MyRequests.cshtml",
+              "RelativeToolTip": "RazorPage\\Pages\\Staff\\PartRequest\\MyRequests.cshtml",
+              "ViewState": "AgIAABoAAAAAAAAAAAAAAGkAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-11T12:40:11.088Z",
               "EditorCaption": ""
             }
           ]

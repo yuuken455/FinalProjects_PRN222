@@ -13,3 +13,19 @@ C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\BLL\bin\Debu
 C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\BLL\bin\Debug\net8.0\DAL.pdb
 C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\BLL\obj\Debug\net8.0\BLL.csproj.AssemblyReference.cache
 C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\BLL\obj\Debug\net8.0\BLL.csproj.Up2Date
+C:\Users\thanh\Desktop\Final\FinalProjects_PRN222\EVServiceManagement\BLL\bin\Debug\net8.0\BLL.deps.json
+C:\Users\thanh\Desktop\Final\FinalProjects_PRN222\EVServiceManagement\BLL\bin\Debug\net8.0\BLL.dll
+C:\Users\thanh\Desktop\Final\FinalProjects_PRN222\EVServiceManagement\BLL\bin\Debug\net8.0\BLL.pdb
+C:\Users\thanh\Desktop\Final\FinalProjects_PRN222\EVServiceManagement\BLL\bin\Debug\net8.0\DAL.dll
+C:\Users\thanh\Desktop\Final\FinalProjects_PRN222\EVServiceManagement\BLL\bin\Debug\net8.0\DAL.pdb
+C:\Users\thanh\Desktop\Final\FinalProjects_PRN222\EVServiceManagement\BLL\obj\Debug\net8.0\BLL.csproj.AssemblyReference.cache
+C:\Users\thanh\Desktop\Final\FinalProjects_PRN222\EVServiceManagement\BLL\obj\Debug\net8.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\thanh\Desktop\Final\FinalProjects_PRN222\EVServiceManagement\BLL\obj\Debug\net8.0\BLL.AssemblyInfoInputs.cache
+C:\Users\thanh\Desktop\Final\FinalProjects_PRN222\EVServiceManagement\BLL\obj\Debug\net8.0\BLL.AssemblyInfo.cs
+C:\Users\thanh\Desktop\Final\FinalProjects_PRN222\EVServiceManagement\BLL\obj\Debug\net8.0\BLL.csproj.CoreCompileInputs.cache
+C:\Users\thanh\Desktop\Final\FinalProjects_PRN222\EVServiceManagement\BLL\obj\Debug\net8.0\BLL.sourcelink.json
+C:\Users\thanh\Desktop\Final\FinalProjects_PRN222\EVServiceManagement\BLL\obj\Debug\net8.0\BLL.csproj.Up2Date
+C:\Users\thanh\Desktop\Final\FinalProjects_PRN222\EVServiceManagement\BLL\obj\Debug\net8.0\BLL.dll
+C:\Users\thanh\Desktop\Final\FinalProjects_PRN222\EVServiceManagement\BLL\obj\Debug\net8.0\refint\BLL.dll
+C:\Users\thanh\Desktop\Final\FinalProjects_PRN222\EVServiceManagement\BLL\obj\Debug\net8.0\BLL.pdb
+C:\Users\thanh\Desktop\Final\FinalProjects_PRN222\EVServiceManagement\BLL\obj\Debug\net8.0\ref\BLL.dll

@@ -1,0 +1,23 @@
+﻿@page
+@model RazorPage.Pages.Manager.Part.DeleteModel
+@{
+    Layout = "_ManagerLayout";
+    <!-- 💡 thêm dòng này -->
+    ViewData["Title"] = "Xoá linh kiện";
+}
+<h2 class="mb-3">Xoá linh kiện</h2>
+
+@if (Model.Part == null)
+{
+    <div class="alert alert-warning">Không tìm thấy linh kiện.</div>
+}
+else
+{
+    <div class="alert alert-danger">
+        Bạn có chắc muốn xoá <strong>@Model.Part.Name</strong>?
+    </div>
+    <form method="post" class="d-flex gap-2">
+        <button class="btn btn-danger" type="submit">Xoá</button>
+        <a asp-page="Index" class="btn btn-outline-secondary">Huỷ</a>
+    </form>
+}

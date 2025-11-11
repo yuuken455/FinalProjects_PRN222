@@ -1,4 +1,4 @@
-using BLL.DTOs.PartDtos;
+﻿using BLL.DTOs.PartDtos;
 using BLL.IService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -7,70 +7,40 @@ namespace RazorPage.Pages.Staff.PartRequest
 {
     public class CreateModel : PageModel
     {
-        private readonly IPartService partService;
-        private readonly IPartRequestService partRequestService;
+        private readonly IPartRequestService _service;
+        private readonly IPartService _partService;
 
-        public CreateModel(IPartService partService, IPartRequestService partRequestService)
+        public CreateModel(IPartRequestService s, IPartService p)
         {
-            this.partService = partService;
-            this.partRequestService = partRequestService;
+            _service = s;
+            _partService = p;
         }
 
-        [BindProperty]
-        public CreatePartRequestDto CreatePartRequestDto { get; set; } = new CreatePartRequestDto();
-        public PartDto PartDto { get; set; } = new PartDto();
-        public string ErrorMessage { get; set; } = string.Empty;    
+        public List<PartDto> Parts { get; set; } = new();
+        [BindProperty] public CreatePartRequestDto Input { get; set; } = new();
 
-        public async Task<IActionResult> OnGet(int partId)
+        // ✅ Nhận partId từ route
+        public async Task OnGetAsync(int partId)
         {
-            if(!int.TryParse(HttpContext.Session.GetString("StaffId"), out int staffId))
-            {
-                return RedirectToPage("/Login");
-            }
+            Parts = await _partService.GetAllAsync();
+            Input.RequestedBy = 1; // TODO: lấy từ Claims/session
 
-            var partDto = await partService.GetPartById(partId);
-            if (partDto == null)
+            // ✅ Gán sẵn linh kiện nếu có
+            if (partId > 0)
             {
-                ErrorMessage = "Part not found.";
-                return Page();
+                Input.PartId = partId;
             }
-
-            PartDto = partDto;
-            CreatePartRequestDto.PartId = partId;
-            return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int partId)
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (!int.TryParse(HttpContext.Session.GetString("StaffId"), out int staffId))
-            {
-                return RedirectToPage("/Login");
-            }
+            Parts = await _partService.GetAllAsync();
+            if (!ModelState.IsValid) return Page();
 
-            CreatePartRequestDto.RequestedBy = staffId;
-            CreatePartRequestDto.PartId = partId;
-
-            if (CreatePartRequestDto.Quantity < 10)
-            {
-                ErrorMessage = "S? l??ng t?i thi?u l� 10.";
-                var partDto = await partService.GetPartById(partId);
-                if (partDto != null) PartDto = partDto;
-                return Page();
-            }
-
-            try
-            {
-                await partRequestService.AddPartRequest(CreatePartRequestDto);
-                TempData["StatusMessage"] = $"?� t?o y�u c?u linh ki?n cho Part #{partId}.";
-                return RedirectToPage("/Staff/PartRequest/Index");
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage = ex.Message;
-                var partDto = await partService.GetPartById(partId);
-                if (partDto != null) PartDto = partDto;
-                return Page();
-            }
+            Input.RequestedBy = 1; // TODO: lấy từ Claims/session
+            await _service.CreateAsync(Input);
+            TempData["Msg"] = "✅ Đã gửi yêu cầu linh kiện thành công!";
+            return RedirectToPage("MyRequests");
         }
     }
 }

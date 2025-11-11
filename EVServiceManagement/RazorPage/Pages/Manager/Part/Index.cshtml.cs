@@ -1,22 +1,21 @@
 using BLL.DTOs.PartDtos;
 using BLL.IService;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace RazorPage.Pages.Manager.Part
 {
     public class IndexModel : PageModel
     {
-        private readonly IPartService partService;
+        private readonly IPartService _service;
+        public IndexModel(IPartService service) { _service = service; }
 
-        public IndexModel(IPartService partService)
+        public List<PartDto> Parts { get; set; } = new();
+        [BindProperty(SupportsGet = true)] public string? Keyword { get; set; }
+
+        public async Task OnGetAsync()
         {
-            this.partService = partService;
-        }
-
-        public ICollection<PartDto> PartDtos { get; set; } = new List<PartDto>();
-
-        public void OnGet()
-        {
+            Parts = await _service.GetAllAsync(Keyword);
         }
     }
 }

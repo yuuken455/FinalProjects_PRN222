@@ -323,7 +323,9 @@ public partial class EVServiceManagementContext : DbContext
         });
 
         OnModelCreatingPartial(modelBuilder);
+
     }
+
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

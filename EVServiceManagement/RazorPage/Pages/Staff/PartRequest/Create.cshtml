@@ -2,81 +2,41 @@
 @model RazorPage.Pages.Staff.PartRequest.CreateModel
 @{
     Layout = "_StaffLayout";
+    ViewData["Title"] = "Tạo yêu cầu linh kiện";
 }
+<h2 class="mb-3">Tạo yêu cầu linh kiện</h2>
 
-<div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
-    <h1 class="h4 m-0"><i class="bi bi-bag-plus me-2"></i>Tạo yêu cầu linh kiện</h1>
+<form method="post" class="card card-body">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-2">
+        <label class="form-label">Linh kiện</label>
+        <select class="form-select"
+                asp-for="Input.PartId"
+                asp-items="@(new SelectList(Model.Parts, "PartId", "Name"))">
+            <option value="">-- Chọn linh kiện --</option>
+        </select>
+        <span asp-validation-for="Input.PartId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-2">
+        <label class="form-label">Số lượng</label>
+        <input class="form-control" asp-for="Input.Quantity" type="number" min="1" />
+        <span asp-validation-for="Input.Quantity" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Ghi chú</label>
+        <textarea class="form-control" asp-for="Input.Notes"></textarea>
+        <span asp-validation-for="Input.Notes" class="text-danger"></span>
+    </div>
+
     <div class="d-flex gap-2">
-        <a asp-page="/Staff/PartRequest/Index" class="btn btn-outline-secondary"><i class="bi bi-list-ul"></i> Danh sách yêu cầu</a>
-        <a asp-page="/Staff/Part/Index" class="btn btn-light"><i class="bi bi-arrow-left"></i> Quay lại kho</a>
+        <button class="btn btn-primary" type="submit">Gửi yêu cầu</button>
+        <a asp-page="MyRequests" class="btn btn-outline-secondary">Danh sách của tôi</a>
     </div>
-</div>
-
-@if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
-{
-    <div class="alert alert-danger" role="alert">
-        <strong>Lỗi:</strong> @Model.ErrorMessage
-    </div>
-}
-
-<div class="row g-4">
-    <div class="col-lg-5">
-        <div class="card shadow-sm h-100 border-0">
-            <div class="card-body">
-                <h5 class="card-title mb-3">Thông tin linh kiện</h5>
-                @if (Model.PartDto != null && Model.PartDto.PartId != 0)
-                {
-                    var stockBadge = Model.PartDto.StockQuantity <= 0 ? "danger" : Model.PartDto.StockQuantity < 5 ? "warning" : "success";
-                    <ul class="list-unstyled mb-0 small">
-                        <li class="mb-2"><strong>Mã:</strong> #@Model.PartDto.PartId</li>
-                        <li class="mb-2"><strong>Tên:</strong> @Model.PartDto.Name</li>
-                        <li class="mb-2"><strong>Giá:</strong> @Model.PartDto.UnitPrice.ToString("N0") đ</li>
-                        <li class="mb-2"><strong>Tồn kho:</strong> <span class="badge bg-@stockBadge">@Model.PartDto.StockQuantity</span></li>
-                        <li class="mb-2"><strong>Trạng thái:</strong> @Model.PartDto.Status</li>
-                    </ul>
-                }
-                else
-                {
-                    <div class="text-muted">Không có thông tin linh kiện.</div>
-                }
-            </div>
-        </div>
-    </div>
-
-    <div class="col-lg-7">
-        <div class="card shadow-sm border-0">
-            <div class="card-body">
-                <h5 class="card-title mb-3">Thông tin yêu cầu</h5>
-                <form method="post" class="needs-validation" novalidate>
-                    <input type="hidden" asp-for="CreatePartRequestDto.PartId" />
-
-                    <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
-
-                    <div class="mb-3">
-                        <label asp-for="CreatePartRequestDto.Quantity" class="form-label">Số lượng</label>
-                        <input asp-for="CreatePartRequestDto.Quantity" type="number" min="10" step="1" class="form-control" placeholder="Tối thiểu 10" required />
-                        <div class="form-text">Yêu cầu tối thiểu 10 theo chính sách.</div>
-                        <span asp-validation-for="CreatePartRequestDto.Quantity" class="text-danger"></span>
-                    </div>
-
-                    <div class="mb-3">
-                        <label asp-for="CreatePartRequestDto.Notes" class="form-label">Ghi chú</label>
-                        <textarea asp-for="CreatePartRequestDto.Notes" rows="3" class="form-control" placeholder="Ví dụ: cần gấp cho đơn hàng tuần tới..."></textarea>
-                        <span asp-validation-for="CreatePartRequestDto.Notes" class="text-danger"></span>
-                    </div>
-
-                    <div class="d-flex gap-2">
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Gửi yêu cầu</button>
-                        <a asp-page="/Staff/Part/Index" class="btn btn-light">Hủy</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+</form>
 
 @section Scripts {
-    <style>
-        .card { border: 0; }
-    </style>
+    <partial name="_ValidationScriptsPartial" />
 }

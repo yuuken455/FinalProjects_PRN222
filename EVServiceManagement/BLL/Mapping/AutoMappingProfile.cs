@@ -27,9 +27,10 @@ namespace BLL.Mapping
             CreateMap<CreateVehicleDto, Vehicle>();
             CreateMap<UpdateVehicleDto, Vehicle>();
 
-            CreateMap<Part, PartDto>();
-            CreateMap<DAL.Entities.Service, ServiceDto>()
-                .ForMember(dest => dest.PartDtos, opt => opt.MapFrom(src => src.ServiceParts.Select(sp => sp.Part)));
+            // Part
+            CreateMap<Part, PartDto>().ReverseMap();
+            CreateMap<CreatePartDto, Part>();
+            CreateMap<UpdatePartDto, Part>();
 
             CreateMap<Payment, PaymentDto>();
             CreateMap<ServiceOrderDetail, ServiceOrderDetailDto>();
@@ -37,9 +38,11 @@ namespace BLL.Mapping
             CreateMap<Appointment, AppointmentDto>()
                 .ForMember(dest => dest.TechnicianDtos, opt => opt.MapFrom(src => src.TechnicianAssignments.Select(ta => ta.Technician)));
 
+            // PartRequest
             CreateMap<PartRequest, PartRequestDto>()
-                .ForMember(dest => dest.PartDto, opt => opt.MapFrom(src => src.Part));
-            CreateMap<CreatePartRequestDto, PartRequest>();
+                .ForMember(d => d.PartDto, opt => opt.MapFrom(s => s.Part))
+                .ForMember(d => d.RequestedByNavigation, opt => opt.Ignore())   // map ở nơi khác nếu có DTO Staff/Manager
+                .ForMember(d => d.ApprovedByNavigation, opt => opt.Ignore());
 
             CreateMap<CreateAccountDto, Account>();
             CreateMap<CreateCustomerDto, Customer>()

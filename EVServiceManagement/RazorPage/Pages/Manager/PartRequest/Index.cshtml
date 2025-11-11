@@ -1,0 +1,88 @@
+﻿@page
+@model RazorPage.Pages.Manager.PartRequest.IndexModel
+@{
+    Layout = "_ManagerLayout";
+    ViewData["Title"] = "Duyệt yêu cầu linh kiện";
+}
+<h2 class="mb-3">Yêu cầu đang chờ duyệt</h2>
+
+@if (TempData["ReqMsg"] is string m)
+{
+    <div class="alert alert-success">@m</div>
+}
+
+<table class="table table-hover align-middle">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Linh kiện</th>
+            <th>SL</th>
+            <th>Người yêu cầu</th>
+            <th>Ngày</th>
+            <th>Ghi chú</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="pending-requests">
+        @foreach (var r in Model.Items)
+        {
+            <tr data-request-id="@r.RequestId">
+                <td>@r.RequestId</td>
+                <td>@r.PartDto?.Name</td>
+                <td>@r.Quantity</td>
+                <td>@r.RequestedBy</td>
+                <td>@r.RequestDate?.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@r.Notes</td>
+                <td class="text-end">
+                    <a class="btn btn-sm btn-outline-primary" asp-page="Review" asp-route-id="@r.RequestId">Xem/Duyệt</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script>
+        const connection = new signalR.HubConnectionBuilder().withUrl("/hubs/notify").withAutomaticReconnect().build();
+
+        function toast(text, cls) {
+            const div = document.createElement("div");
+            div.className = `alert ${cls||"alert-info"} position-fixed top-0 end-0 m-3 shadow`;
+            div.textContent = text;
+            document.body.appendChild(div);
+            setTimeout(()=>div.remove(), 4000);
+        }
+
+        connection.on("PartRequested", msg => {
+            const tbody = document.getElementById("pending-requests");
+            if (!tbody) return;
+
+            if (tbody.querySelector(`tr[data-request-id="${msg.requestId}"]`)) return; // tránh trùng
+
+            const tr = document.createElement("tr");
+            tr.setAttribute("data-request-id", msg.requestId);
+            tr.innerHTML = `
+                <td>${msg.requestId}</td>
+                <td>${msg.partName ?? ""}</td>
+                <td>${msg.quantity}</td>
+                <td>${msg.staffId}</td>
+                <td>${new Date(msg.requestedAt).toLocaleString()}</td>
+                <td></td>
+                <td class="text-end">
+                    <a class="btn btn-sm btn-outline-primary" href="/Manager/PartRequest/Review/${msg.requestId}">Xem/Duyệt</a>
+                </td>`;
+            tbody.prepend(tr);
+
+            toast(\`Yêu cầu mới #\${msg.requestId}\`, "alert-info");
+        });
+
+        connection.on("RequestStatusChanged", msg => {
+            if (msg.status !== "Pending") {
+                const row = document.querySelector(`tr[data-request-id="${msg.requestId}"]`);
+                if (row) row.remove();
+            }
+        });
+        connection.start().catch(console.error);
+    </script>
+}

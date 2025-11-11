@@ -9,113 +9,137 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = RazorPage
 build_property.RootNamespace = RazorPage
-build_property.ProjectDir = C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\RazorPage\
+build_property.ProjectDir = C:\Users\thanh\Desktop\Final\FinalProjects_PRN222\EVServiceManagement\RazorPage\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\koi22\Desktop\FPT\PRN222\Final project\EVServiceManagement\RazorPage
+build_property.MSBuildProjectDirectory = C:\Users\thanh\Desktop\Final\FinalProjects_PRN222\EVServiceManagement\RazorPage
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Customer/Appointment/Create.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Customer/Appointment/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcQXBwb2ludG1lbnRcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Customer/Appointment/Index.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Customer/Appointment/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcQXBwb2ludG1lbnRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Customer/Vehicle/Create.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Customer/Vehicle/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcVmVoaWNsZVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Customer/Vehicle/Delete.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Customer/Vehicle/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcVmVoaWNsZVxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Customer/Vehicle/Edit.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Customer/Vehicle/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcVmVoaWNsZVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Customer/Vehicle/Index.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Customer/Vehicle/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcVmVoaWNsZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Error.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Index.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Manager/Index.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Manager/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Manager/Part/Index.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Manager/PartRequest/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlclxQYXJ0UmVxdWVzdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Manager/PartRequest/Review.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlclxQYXJ0UmVxdWVzdFxSZXZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Manager/Part/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlclxQYXJ0XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Manager/Part/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlclxQYXJ0XERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Manager/Part/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlclxQYXJ0XEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Manager/Part/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlclxQYXJ0XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Privacy.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Register.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Shared/_ManagerLayout.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Shared/_ManagerLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9NYW5hZ2VyTGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Shared/_StaffLayout.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Shared/_StaffLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9TdGFmZkxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Staff/Index.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Staff/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhZmZcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Staff/PartRequest/Create.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Staff/PartRequest/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhZmZcUGFydFJlcXVlc3RcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Staff/PartRequest/Index.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Staff/PartRequest/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhZmZcUGFydFJlcXVlc3RcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Staff/Part/Index.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Staff/PartRequest/MyRequests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhZmZcUGFydFJlcXVlc3RcTXlSZXF1ZXN0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Staff/Part/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhZmZcUGFydFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/_ViewImports.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/_ViewStart.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Customer/Index.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Customer/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-kpeh2nqzkq
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Customer/Service/Index.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Customer/Service/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcU2VydmljZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = b-mxzaifr6yq
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Login.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-019d0p5s6z
 
-[C:/Users/koi22/Desktop/FPT/PRN222/Final project/EVServiceManagement/RazorPage/Pages/Shared/_Layout.cshtml]
+[C:/Users/thanh/Desktop/Final/FinalProjects_PRN222/EVServiceManagement/RazorPage/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-ylr71wum2d

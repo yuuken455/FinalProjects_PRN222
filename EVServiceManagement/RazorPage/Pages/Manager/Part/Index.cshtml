@@ -1,4 +1,79 @@
 ﻿@page
-@model RazorPage.Pages.Manager.Part.IndexModel
+@model Manager.Part.IndexModel
 @{
+    Layout = "_ManagerLayout";
+    ViewData["Title"] = "Quản lý linh kiện";
+}
+<h2 class="mb-3">Quản lý linh kiện</h2>
+
+<div class="d-flex gap-2 mb-3">
+    <a asp-page="/Manager/PartRequest/Index" class="btn btn-primary">
+        <i class="bi bi-box-arrow-up-right"></i> Đến trang PartRequest
+    </a>
+</div>
+
+<form method="get" class="row g-2 mb-3">
+    <div class="col-auto">
+        <input class="form-control" name="Keyword" value="@Model.Keyword" placeholder="Tìm theo tên..." />
+    </div>
+    <div class="col-auto">
+        <button class="btn btn-primary" type="submit">Tìm</button>
+        <a asp-page="Create" class="btn btn-success ms-2">+ Thêm linh kiện</a>
+    </div>
+</form>
+
+@if (TempData["Msg"] is string msg)
+{
+    <div class="alert alert-success">@msg</div>
+}
+
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th>Mã</th>
+            <th>Tên</th>
+            <th>Đơn giá</th>
+            <th>Tồn kho</th>
+            <th>Trạng thái</th>
+            <th style="width:160px"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model.Parts)
+        {
+            <tr>
+                <td>@p.PartId</td>
+                <td>@p.Name</td>
+                <td>@p.UnitPrice.ToString("n0")</td>
+                <td data-part-id="@p.PartId">@p.StockQuantity</td>
+                <td>
+                    <span class="badge @(p.Status == "Active" ? "bg-success" : "bg-secondary")">@p.Status</span>
+                </td>
+                <td class="text-end">
+                    <a class="btn btn-sm btn-outline-primary" asp-page="Edit" asp-route-id="@p.PartId">Sửa</a>
+                    <a class="btn btn-sm btn-outline-danger" asp-page="Delete" asp-route-id="@p.PartId">Xoá</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script>
+        const connection = new signalR.HubConnectionBuilder().withUrl("/hubs/notify").withAutomaticReconnect().build();
+
+        connection.on("PartReceived", msg => {
+            const message = `📦 Linh kiện #${msg.partId} +${msg.quantity} (tồn mới: ${msg.stockAfter})`;
+            const alertDiv = document.createElement("div");
+            alertDiv.className = "alert alert-info position-fixed bottom-0 end-0 m-3 shadow";
+            alertDiv.textContent = message;
+            document.body.appendChild(alertDiv);
+            setTimeout(() => alertDiv.remove(), 4000);
+
+            const cell = document.querySelector(`td[data-part-id="${msg.partId}"]`);
+            if (cell) cell.textContent = msg.stockAfter;
+        });
+        connection.start().catch(console.error);
+    </script>
 }
