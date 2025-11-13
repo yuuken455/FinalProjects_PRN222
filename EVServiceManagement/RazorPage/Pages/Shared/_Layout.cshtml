@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/RazorPage.styles.css" asp-append-version="true" />
     <style>
+        /* Allow pages to control scrolling; prevent double scrollbars in nested layouts */
         html, body { height: 100%; overflow: hidden; margin: 0; }
+        body > .container-fluid { height: 100vh; }
     </style>
 </head>
 <body>

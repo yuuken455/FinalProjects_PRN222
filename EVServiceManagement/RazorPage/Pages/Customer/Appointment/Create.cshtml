@@ -115,7 +115,8 @@
                                             <tbody>
                                             @foreach (var s in g)
                                             {
-                                                var keywords = (s.Name + " " + s.Type + " " + s.Description)?.ToLower();
+                                                var partNames = (s.PartDtos != null && s.PartDtos.Any()) ? string.Join(' ', s.PartDtos.Select(p => p.Name)) : string.Empty;
+                                                var keywords = ($"{s.Name} {s.Type} {s.Description} {partNames}")?.ToLower();
                                                 <tr class="service-row" data-keywords="@keywords">
                                                     <td>
                                                         <input class="form-check-input service-check" type="checkbox" value="@s.ServiceId" data-price="@s.Price" />
@@ -131,9 +132,13 @@
                                                                     <span class="text-secondary me-2"><i class="bi bi-box-seam"></i> Phụ tùng:</span>
                                                                     @foreach (var p in s.PartDtos)
                                                                     {
-                                                                        <span class="badge bg-light text-dark border me-1">@p.Name (@p.UnitPrice.ToString("N0") đ)</span>
+                                                                        <span class="badge bg-light text-dark border me-1" title="Kho: @p.StockQuantity">@p.Name (@p.UnitPrice.ToString("N0") đ)</span>
                                                                     }
                                                                 </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="mt-2 small text-muted"><i class="bi bi-info-circle"></i> Dịch vụ thay thế chưa có phụ tùng đính kèm.</div>
                                                             }
                                                         }
                                                     </td>

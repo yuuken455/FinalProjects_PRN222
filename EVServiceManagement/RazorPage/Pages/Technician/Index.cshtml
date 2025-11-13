@@ -1,0 +1,136 @@
+﻿@page
+@model RazorPage.Pages.Technician.IndexModel
+@{
+    Layout = "_Layout"; // or a dedicated technician layout if exists
+    ViewData["Title"] = "Lịch làm việc";
+
+    var weekStart = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday); // Monday start
+    var weekDays = Enumerable.Range(0, 7).Select(i => weekStart.AddDays(i)).ToList();
+    var appointmentsByDay = Model.Appointments.GroupBy(a => a.Date.Date).ToDictionary(g => g.Key, g => g.OrderBy(x => x.Date).ToList());
+    var today = DateTime.Today;
+    var todays = appointmentsByDay.ContainsKey(today) ? appointmentsByDay[today] : new List<BLL.DTOs.AppointmentDtos.AppointmentDto>();
+}
+
+<div class="container-xxl py-4">
+    <div class="page-header mb-4 d-flex flex-wrap justify-content-between align-items-start gap-3">
+        <div>
+            <h1 class="page-title fw-semibold mb-1">Lịch làm việc tuần này</h1>
+            <p class="text-secondary mb-0 small">Tuần @weekStart.ToString("dd/MM") - @weekStart.AddDays(6).ToString("dd/MM/yyyy")</p>
+        </div>
+        <form method="post" asp-page="/Logout" class="d-inline">
+            <button type="submit" class="btn btn-outline-danger"><i class="bi bi-box-arrow-right"></i> Đăng xuất</button>
+        </form>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Lịch tuần (theo ngày)</h5>
+                    <div class="weekly-grid">
+                        @foreach (var day in weekDays)
+                        {
+                            var list = appointmentsByDay.ContainsKey(day.Date) ? appointmentsByDay[day.Date] : new List<BLL.DTOs.AppointmentDtos.AppointmentDto>();
+                            <div class="day-column @(day.Date==today?"today":"")">
+                                <div class="day-header d-flex justify-content-between align-items-center">
+                                    <span class="fw-semibold">@day.ToString("ddd")</span>
+                                    <span class="small text-muted">@day.ToString("dd/MM")</span>
+                                </div>
+                                <div class="day-body">
+                                    @if (!list.Any())
+                                    {
+                                        <div class="empty small text-muted">Không có lịch.</div>
+                                    }
+                                    else
+                                    {
+                                        @foreach (var ap in list)
+                                        {
+                                            var endTime = ap.Date.AddMinutes(ap.ServiceOrderDetailDtos?.Where(s=>s.ServiceDto!=null).Sum(s=>s.ServiceDto!.Duration) ?? 0);
+                                            <div class="slot card shadow-sm border-0 mb-2">
+                                                <div class="card-body p-2 d-flex flex-column gap-1">
+                                                    <div class="d-flex justify-content-between small">
+                                                        <span class="fw-semibold">LH-@ap.AppointmentId</span>
+                                                        <span class="badge bg-secondary text-uppercase">@ap.Status</span>
+                                                    </div>
+                                                    <div class="time-range small text-muted">@ap.Date.ToString("HH:mm") - @endTime.ToString("HH:mm")</div>
+                                                    <div class="vehicle small">Xe: @ap.VehicleDto?.LicensePlate</div>
+                                                    <div class="services small">DV: @(ap.ServiceOrderDetailDtos?.Count ?? 0)</div>
+                                                    <a asp-page="./Detail" asp-route-id="@ap.AppointmentId" class="btn btn-xs btn-outline-primary w-100">Chi tiết</a>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Lịch hôm nay (@today.ToString("dd/MM/yyyy"))</h5>
+                    @if (!todays.Any())
+                    {
+                        <div class="text-muted small">Hôm nay không có lịch hẹn.</div>
+                    }
+                    else
+                    {
+                        <ul class="list-group list-group-flush">
+                            @foreach (var ap in todays)
+                            {
+                                var endTime = ap.Date.AddMinutes(ap.ServiceOrderDetailDtos?.Where(s=>s.ServiceDto!=null).Sum(s=>s.ServiceDto!.Duration) ?? 0);
+                                <li class="list-group-item px-0">
+                                    <div class="d-flex justify-content-between small mb-1">
+                                        <span class="fw-semibold">LH-@ap.AppointmentId</span>
+                                        <span class="badge bg-secondary">@ap.Status</span>
+                                    </div>
+                                    <div class="small text-muted mb-1">@ap.Date.ToString("HH:mm") - @endTime.ToString("HH:mm")</div>
+                                    <div class="small">Xe: @ap.VehicleDto?.LicensePlate</div>
+                                    <div class="small">Dịch vụ: @(ap.ServiceOrderDetailDtos?.Count ?? 0)</div>
+                                    <a asp-page="./Detail" asp-route-id="@ap.AppointmentId" class="btn btn-sm btn-outline-primary mt-2">Chi tiết</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script>
+        (function(){
+            const conn = new signalR.HubConnectionBuilder()
+                .withUrl('/hubs/notify')
+                .withAutomaticReconnect()
+                .build();
+
+            const reload = () => location.reload();
+            conn.on('AppointmentChanged', reload);
+            conn.on('AppointmentDeleted', reload);
+            conn.on('AppointmentsBulkChanged', reload);
+
+            conn.start().catch(console.error);
+        })();
+    </script>
+    <style>
+        html,body{height:auto;overflow-y:auto !important;}
+        .weekly-grid { display:grid; grid-template-columns: repeat(7,1fr); gap:.75rem; }
+        .day-column { background:#f8f9fa; border-radius:.75rem; padding:.5rem; min-height:220px; display:flex; flex-direction:column; }
+        .day-column.today { outline:2px solid #0d6efd; }
+        .day-header { border-bottom:1px solid #e5e7eb; padding-bottom:.25rem; margin-bottom:.35rem; }
+        .day-body { flex:1; overflow-y:auto; }
+        .slot { font-size:.7rem; }
+        .slot .badge { font-size:.55rem; }
+        .btn-xs { padding:.15rem .4rem; font-size:.6rem; line-height:1.2; }
+        .empty { font-style:italic; }
+        @@media (max-width:991.98px){ .weekly-grid { grid-template-columns: repeat(3,1fr); } }
+        @@media (max-width:575.98px){ .weekly-grid { grid-template-columns: repeat(2,1fr); } }
+    </style>
+}

@@ -25,6 +25,8 @@ builder.Services.AddAutoMapper(typeof(AutoMappingProfile));
 // Account
 builder.Services.AddScoped<IAccountRepo, AccountRepo>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<ITechnicianRepo, TechnicianRepo>();  
+builder.Services.AddScoped<ITechnicianService, TechnicianService>();    
 
 // Vehicle
 builder.Services.AddScoped<IVehicleRepo, VehicleRepo>();
@@ -47,6 +49,8 @@ builder.Services.AddScoped<IPartRequestService, PartRequestService>();
 // Report
 builder.Services.AddScoped<IReportRepository, ReportRepository>();
 builder.Services.AddScoped<IReportService, ReportService>();
+// Register background hosted service for auto in-progress updates.
+builder.Services.AddHostedService<RazorPage.Services.BackgroundAppointmentUpdater>();
 // ========== 5️⃣ Build app ==========
 var app = builder.Build();
 

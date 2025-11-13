@@ -1,0 +1,247 @@
+﻿@page
+@model RazorPage.Pages.Staff.Appointment.IndexModel
+@{
+    Layout = "_StaffLayout";
+    ViewData["Title"] = "Quản lý lịch hẹn";
+
+    var pending = Model.Appointments
+        .Where(a => string.Equals(a.Status, "Pending", StringComparison.OrdinalIgnoreCase))
+        .OrderByDescending(a => a.Date)
+        .ToList();
+
+    var scheduled = Model.Appointments
+        .Where(a => string.Equals(a.Status, "Scheduled", StringComparison.OrdinalIgnoreCase) || string.Equals(a.Status, "Confirmed", StringComparison.OrdinalIgnoreCase))
+        .OrderByDescending(a => a.Date)
+        .ToList();
+
+    var inprogress = Model.Appointments
+        .Where(a => string.Equals(a.Status, "Inprogress", StringComparison.OrdinalIgnoreCase) || string.Equals(a.Status, "InProgress", StringComparison.OrdinalIgnoreCase))
+        .OrderByDescending(a => a.Date)
+        .ToList();
+
+    var completed = Model.Appointments
+        .Where(a => string.Equals(a.Status, "Completed", StringComparison.OrdinalIgnoreCase))
+        .OrderByDescending(a => a.Date)
+        .ToList();
+
+    var canceled = Model.Appointments
+        .Where(a => string.Equals(a.Status, "Canceled", StringComparison.OrdinalIgnoreCase)
+                 || string.Equals(a.Status, "Cancelled", StringComparison.OrdinalIgnoreCase)
+                 || string.Equals(a.Status, "Cancaled", StringComparison.OrdinalIgnoreCase))
+        .OrderByDescending(a => a.Date)
+        .ToList();
+
+    var unpaid = Model.Appointments
+        .Where(a => a.PaymentDtos != null && a.PaymentDtos.Any(p => string.Equals(p.PaymentStatus, "UnPaid", StringComparison.OrdinalIgnoreCase) || string.Equals(p.PaymentStatus, "Unpaid", StringComparison.OrdinalIgnoreCase)))
+        .OrderByDescending(a => a.Date)
+        .ToList();
+}
+
+
+<div class="page-header mb-4">
+    <h1 class="page-title mb-1 fw-semibold">Lịch hẹn khách hàng</h1>
+    <p class="text-secondary mb-0 small">Theo dõi và quản lý lịch hẹn dịch vụ của khách hàng.</p>
+</div>
+
+<div class="row g-4">
+    <div class="col-12">
+        <div class="d-flex flex-wrap gap-2 mb-3" id="statusFilters">
+            <button type="button" class="filter-chip active" data-status="all">Tất cả (@Model.Appointments.Count)</button>
+            <button type="button" class="filter-chip" data-status="pending">Chờ (@pending.Count)</button>
+            <button type="button" class="filter-chip" data-status="scheduled">Lên lịch (@scheduled.Count)</button>
+            <button type="button" class="filter-chip" data-status="inprogress">Đang thực hiện (@inprogress.Count)</button>
+            <button type="button" class="filter-chip" data-status="completed">Hoàn tất (@completed.Count)</button>
+            <button type="button" class="filter-chip" data-status="canceled">Hủy (@canceled.Count)</button>
+            <button type="button" class="filter-chip" data-status="unpaid">Chưa thanh toán (@unpaid.Count)</button>
+        </div>
+    </div>
+    <div class="col-12">
+        <div id="appointmentContainer" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach (var a in Model.Appointments.OrderByDescending(x => x.Date))
+            {
+                var status = a.Status?.ToLower();
+                var isUnpaid = a.PaymentDtos != null && a.PaymentDtos.Any(p => string.Equals(p.PaymentStatus, "UnPaid", StringComparison.OrdinalIgnoreCase) || string.Equals(p.PaymentStatus, "Unpaid", StringComparison.OrdinalIgnoreCase));
+                string color = status switch
+                {
+                    "pending" => "warning",
+                    "scheduled" or "confirmed" => "info",
+                    "inprogress" or "in-progress" => "primary",
+                    "completed" => "success",
+                    "canceled" or "cancelled" or "cancaled" => "secondary",
+                    _ => isUnpaid ? "danger" : "dark"
+                };
+                var services = a.ServiceOrderDetailDtos?.Where(s => s.ServiceDto != null).ToList();
+                int totalDuration = services?.Sum(s => s.ServiceDto!.Duration) ?? 0;
+                var serviceNames = services != null ? string.Join(' ', services.Select(s => s.ServiceDto!.Name)) : string.Empty;
+                var keywords = ($"{a.AppointmentId} {a.CustomerId} {a.VehicleId} {a.VehicleDto?.LicensePlate} {a.CustomerDto?.AccountDto?.FullName} {serviceNames} {a.Notes} {a.Status} {(isUnpaid?"unpaid":"paid")}")?.ToLower();
+                <div class="col appointment-item" data-status="@status" data-payment="@(isUnpaid?"unpaid":"paid")" data-keywords="@keywords">
+                    <div class="appointment-card card h-100 border-0 shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div class="d-flex align-items-center gap-2 flex-grow-1">
+                                    <div class="appointment-avatar bg-primary-subtle text-primary"><i class="bi bi-calendar-event"></i></div>
+                                    <h6 class="card-title mb-0">LH-@a.AppointmentId</h6>
+                                </div>
+                                <div class="d-flex gap-2 align-items-center">
+                                    @if (isUnpaid)
+                                    {
+                                        <span class="badge bg-danger">UnPaid</span>
+                                    }
+                                    <span class="badge status-badge bg-@color text-uppercase">@a.Status</span>
+                                </div>
+                            </div>
+                            <div class="small text-muted mb-2">Thời gian đặt: @a.Date.ToString("dd/MM/yyyy HH:mm")</div>
+                            <ul class="list-unstyled mb-3 small flex-grow-1">
+                                <li><strong>Khách hàng:</strong> @a.CustomerDto?.AccountDto?.FullName (#@a.CustomerId)</li>
+                                <li><strong>Xe:</strong> @a.VehicleDto?.LicensePlate (@a.VehicleId)</li>
+                                <li><strong>Dịch vụ:</strong> @(services?.Count ?? 0) mục</li>
+                                <li><strong>Thời lượng ước tính:</strong> @totalDuration phút</li>
+                                <li><strong>Ghi chú:</strong> @(string.IsNullOrWhiteSpace(a.Notes) ? "-" : a.Notes)</li>
+                            </ul>
+                            @if (services != null && services.Any())
+                            {
+                                <div class="services-list small mb-3">
+                                    @foreach (var s in services)
+                                    {
+                                        <span class="service-chip" title="@s.ServiceDto!.Description">@s.ServiceDto!.Name (@s.ServiceDto.Duration'p')</span>
+                                    }
+                                </div>
+                            }
+                            <div class="d-flex gap-2 mt-auto">
+                                <a asp-page="./Detail" asp-route-id="@a.AppointmentId" class="btn btn-sm btn-outline-primary flex-grow-1"><i class="bi bi-eye"></i> Chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script>
+        (function(){
+            const container = document.getElementById('appointmentContainer');
+            const searchBox = document.createElement('input');
+            searchBox.type = 'text';
+            searchBox.className = 'form-control search-box mb-3';
+            searchBox.placeholder = 'Tìm kiếm theo mã, khách hàng, xe, dịch vụ...';
+            container.parentElement.insertBefore(searchBox, container);
+            const filterChips = document.querySelectorAll('#statusFilters .filter-chip');
+
+            function applyFilters(){
+                const q = searchBox.value.trim().toLowerCase();
+                const activeChip = document.querySelector('#statusFilters .filter-chip.active');
+                const statusFilter = activeChip?.dataset.status || 'all';
+                const items = container ? Array.from(container.querySelectorAll('.appointment-item')) : [];
+                items.forEach(el => {
+                    const keywords = el.dataset.keywords || '';
+                    const status = el.dataset.status || '';
+                    const isUnpaid = el.dataset.payment === 'unpaid';
+                    const matchSearch = !q || keywords.includes(q);
+                    const matchStatus = statusFilter === 'all' || status === statusFilter || (statusFilter === 'unpaid' && isUnpaid);
+                    el.style.display = (matchSearch && matchStatus) ? '' : 'none';
+                });
+            }
+
+            searchBox.addEventListener('input', applyFilters);
+            filterChips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    filterChips.forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                    applyFilters();
+                });
+            });
+
+            // SignalR auto-refresh on appointment events
+            const conn = new signalR.HubConnectionBuilder()
+                .withUrl('/hubs/notify')
+                .withAutomaticReconnect()
+                .build();
+
+            const reload = () => location.reload();
+            conn.on('AppointmentChanged', reload);
+            conn.on('AppointmentDeleted', reload);
+            conn.on('AppointmentsBulkChanged', reload);
+            conn.start().catch(console.error);
+        })();
+    </script>
+    <style>
+        /* Loại bỏ overflow trên body để tránh xuất hiện 2 thanh cuộn */
+        body { overflow-y: auto; }
+
+        .container-xxl {
+            max-width: 95%;
+        }
+
+        .filter-chip {
+            border: none;
+            background: #f1f3f5;
+            color: #495057;
+            padding: .5rem .9rem;
+            border-radius: 2rem;
+            font-size: .7rem;
+            font-weight: 600;
+            letter-spacing: .5px;
+            display: flex;
+            align-items: center;
+            gap: .25rem;
+            cursor: pointer;
+            transition: .25s
+        }
+
+            .filter-chip.active, .filter-chip:hover {
+                background: #0d6efd;
+                color: #fff
+            }
+
+        .appointment-card {
+            transition: transform .25s ease,box-shadow .25s ease,border-color .25s;
+            border: 1px solid #e5e7eb;
+            border-radius: 1.25rem
+        }
+
+            .appointment-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 .75rem 1.5rem rgba(0,0,0,.12);
+                border-color: #d0d7de
+            }
+
+        .appointment-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem
+        }
+
+        .status-badge {
+            font-size: .6rem;
+            letter-spacing: .5px
+        }
+
+        .services-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem
+        }
+
+        .service-chip {
+            background: #eef2ff;
+            color: #1e40af;
+            padding: .25rem .6rem;
+            border-radius: 1rem;
+            font-size: .65rem;
+            font-weight: 600;
+            white-space: nowrap
+        }
+
+            .service-chip:hover {
+                background: #dbeafe
+            }
+    </style>
+}

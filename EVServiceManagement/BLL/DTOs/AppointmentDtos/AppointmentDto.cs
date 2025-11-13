@@ -19,11 +19,13 @@ namespace BLL.DTOs.AppointmentDtos
 
         public string? Notes { get; set; }
 
+        public virtual CustomerDto CustomerDto { get; set; } = null!;   
+
         public virtual ICollection<PaymentDto> PaymentDtos { get; set; } = new List<PaymentDto>();
 
         public virtual ICollection<ServiceOrderDetailDto> ServiceOrderDetailDtos { get; set; } = new List<ServiceOrderDetailDto>();
 
-        public virtual ICollection<TechnicianDto> TechnicianDtos { get; set; } = new List<TechnicianDto>();
+        public virtual ICollection<TechnicianAssignmentDto> TechnicianAssignmentDtos { get; set; } = new List<TechnicianAssignmentDto>();
 
         public virtual VehicleDto VehicleDto { get; set; } = null!;
     }

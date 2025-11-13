@@ -26,5 +26,34 @@ namespace RazorPage.Pages.Customer.Appointment
             AppointmentDtos = await appointmentService.GetAppointmentsByCustomerIdAsync(customerId);
             return Page();
         }
+
+        public async Task<IActionResult> OnPostCancelAsync(int id, string note)
+        {
+            if (!int.TryParse(HttpContext.Session.GetString("CustomerId"), out int customerId))
+            {
+                return RedirectToPage("/Login");
+            }
+
+            var ap = await appointmentService.GetAppointmentByIdAsync(id);
+
+            if (ap == null || ap.CustomerId != customerId)
+            {
+                return RedirectToPage("/Error");
+            }
+
+            if (string.Equals(ap.Status, "Pending", StringComparison.OrdinalIgnoreCase))
+            {
+                await appointmentService.DeletePendingAppointmentAsync(id);
+                TempData["Msg"] = "Đã xoá lịch hẹn.";
+            }
+            else if (string.Equals(ap.Status, "Scheduled", StringComparison.OrdinalIgnoreCase))
+            {
+                await appointmentService.CancelAppointmentAsync(id, note);
+                TempData["Msg"] = "Đã huỷ lịch hẹn.";
+            }
+
+            AppointmentDtos = await appointmentService.GetAppointmentsByCustomerIdAsync(customerId);
+            return Page();
+        }
     }
 }

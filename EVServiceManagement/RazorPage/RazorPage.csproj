@@ -10,8 +10,4 @@
     <ProjectReference Include="..\BLL\BLL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Technician\" />
-  </ItemGroup>
-
 </Project>

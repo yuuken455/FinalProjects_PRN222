@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\RazorPage.csproj": {}
+    "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\RazorPage.csproj": {}
   },
   "projects": {
-    "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\BLL\\BLL.csproj": {
+    "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\BLL\\BLL.csproj",
+        "projectUniqueName": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\BLL\\BLL.csproj",
-        "packagesPath": "C:\\Users\\thanh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\BLL\\obj\\",
+        "projectPath": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\BLL\\BLL.csproj",
+        "packagesPath": "C:\\Users\\koi22\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\BLL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\thanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\koi22\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\DAL\\DAL.csproj"
+              "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\DAL\\DAL.csproj"
               }
             }
           }
@@ -79,24 +80,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\DAL\\DAL.csproj": {
+    "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\DAL\\DAL.csproj",
+        "projectUniqueName": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\DAL\\DAL.csproj",
-        "packagesPath": "C:\\Users\\thanh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\DAL\\obj\\",
+        "projectPath": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\DAL\\DAL.csproj",
+        "packagesPath": "C:\\Users\\koi22\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\thanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\koi22\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -105,6 +106,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -166,24 +168,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\RazorPage.csproj": {
+    "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\RazorPage.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\RazorPage.csproj",
+        "projectUniqueName": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\RazorPage.csproj",
         "projectName": "RazorPage",
-        "projectPath": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\RazorPage.csproj",
-        "packagesPath": "C:\\Users\\thanh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\obj\\",
+        "projectPath": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\RazorPage.csproj",
+        "packagesPath": "C:\\Users\\koi22\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\thanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\koi22\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -192,14 +194,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\BLL\\BLL.csproj": {
-                "projectPath": "C:\\Users\\thanh\\Desktop\\Final\\FinalProjects_PRN222\\EVServiceManagement\\BLL\\BLL.csproj"
+              "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\BLL\\BLL.csproj": {
+                "projectPath": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\BLL\\BLL.csproj"
               }
             }
           }
@@ -238,7 +241,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
