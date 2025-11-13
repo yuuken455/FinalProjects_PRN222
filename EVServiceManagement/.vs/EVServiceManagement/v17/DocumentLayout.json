@@ -1,71 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|c:\\users\\koi22\\desktop\\fpt\\prn222\\fp\\finalprojects_prn222\\evservicemanagement\\razorpage\\pages\\technician\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|solutionrelative:razorpage\\pages\\technician\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|c:\\users\\koi22\\desktop\\fpt\\prn222\\fp\\finalprojects_prn222\\evservicemanagement\\razorpage\\pages\\technician\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|solutionrelative:razorpage\\pages\\technician\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|c:\\users\\koi22\\desktop\\fpt\\prn222\\fp\\finalprojects_prn222\\evservicemanagement\\razorpage\\pages\\customer\\vehicle\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7BF9D7D7-C768-4E2B-8A63-1597ED72E675}|RazorPage\\RazorPage.csproj|solutionrelative:razorpage\\pages\\customer\\vehicle\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedHeight": 279,
-          "SelectedChildIndex": 2,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Customer\\Vehicle\\Index.cshtml",
-              "RelativeDocumentMoniker": "RazorPage\\Pages\\Customer\\Vehicle\\Index.cshtml",
-              "ToolTip": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Customer\\Vehicle\\Index.cshtml",
-              "RelativeToolTip": "RazorPage\\Pages\\Customer\\Vehicle\\Index.cshtml",
-              "ViewState": "AgIAAI0AAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-13T07:13:46.106Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Detail.cshtml",
-              "DocumentMoniker": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Technician\\Detail.cshtml",
-              "RelativeDocumentMoniker": "RazorPage\\Pages\\Technician\\Detail.cshtml",
-              "ToolTip": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Technician\\Detail.cshtml",
-              "RelativeToolTip": "RazorPage\\Pages\\Technician\\Detail.cshtml",
-              "ViewState": "AgIAAKMAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-13T07:06:04.46Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Technician\\Index.cshtml",
-              "RelativeDocumentMoniker": "RazorPage\\Pages\\Technician\\Index.cshtml",
-              "ToolTip": "C:\\Users\\koi22\\Desktop\\FPT\\PRN222\\FP\\FinalProjects_PRN222\\EVServiceManagement\\RazorPage\\Pages\\Technician\\Index.cshtml",
-              "RelativeToolTip": "RazorPage\\Pages\\Technician\\Index.cshtml",
-              "ViewState": "AgIAAGcAAAAAAAAAAAAmwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-13T07:05:21.392Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
